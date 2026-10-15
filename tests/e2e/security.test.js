@@ -53,7 +53,12 @@ beforeAll(async () => {
   await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
   origin = `http://127.0.0.1:${server.address().port}`;
   const puppeteer = (await import('puppeteer')).default;
-  browser = await puppeteer.launch({ headless: true });
+  // GitHub's Ubuntu runners block Chromium's user-namespace sandbox.
+  // This flag is limited to the disposable CI test browser.
+  browser = await puppeteer.launch({
+    headless: true,
+    args: process.platform === 'linux' && process.env.CI === 'true' ? ['--no-sandbox'] : [],
+  });
 });
 
 afterAll(async () => {
