@@ -1,0 +1,204 @@
+Issue Key,Issue Type,Current Status,Parent Key,Parent Summary,Parent Type
+FLOW-1,Story,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-2,Bug,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-3,Bug,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-4,Story,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-5,Story,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-6,Story,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-7,Story,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-8,Story,Open,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-9,Story,Open,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-10,Story,Open,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-11,Story,Open,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-12,Story,Open,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-13,Story,Open,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-14,Story,Open,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-15,Story,Open,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-16,Story,Open,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-17,Bug,Open,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-18,Story,Open,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-19,Story,Open,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-20,Story,Open,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-21,Story,Open,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-22,Story,Open,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-23,Bug,Open,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-24,Story,Open,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-25,Story,Open,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-26,Bug,Open,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-27,Story,Open,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-28,Story,Open,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-29,Story,Open,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-30,Story,Open,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-31,Story,Open,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-32,Bug,Open,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-33,Story,Open,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-34,Bug,Open,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-35,Story,Open,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-36,Story,Open,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-37,Bug,Open,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-38,Story,Open,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-39,Story,Open,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-40,Story,Open,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-TD-1,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-2,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-3,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-4,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-5,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-6,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-7,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-8,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-9,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-10,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-11,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-12,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-13,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-14,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-15,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-16,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-17,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-18,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-19,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-20,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-21,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-22,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-23,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-24,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-25,Story,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-TD-26,Story,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-TD-27,Story,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-TD-28,Story,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-TD-29,Story,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-TD-30,Story,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-TD-31,Story,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-TD-32,Story,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-TD-33,Story,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-TD-34,Story,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-TD-35,Story,Done,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-TD-36,Story,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-TD-37,Story,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-TD-38,Story,Done,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-TD-39,Story,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-TD-40,Story,Done,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-TD-41,Story,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-TD-42,Story,Done,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-TD-43,Story,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-TD-44,Story,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-TD-45,Story,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-TD-46,Story,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-TD-47,Story,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-TD-48,Story,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-TD-49,Story,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-TD-50,Story,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-TD-51,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-52,Story,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-TD-53,Story,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-TD-54,Story,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-TD-55,Story,Done,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-TD-56,Story,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-TD-57,Story,Done,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-TD-58,Story,Done,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-TD-59,Story,Done,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-TD-60,Story,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-TD-61,Story,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-TD-62,Story,Done,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-TD-63,Story,Done,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-TD-64,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-65,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-66,Story,Done,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-TD-67,Story,Done,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-TD-68,Story,Done,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-TD-69,Story,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-TD-70,Story,Done,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-TD-71,Story,Done,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-TD-72,Story,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-TD-73,Story,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-TD-74,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-75,Story,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-TD-76,Story,Done,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-TD-77,Story,Done,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-TD-78,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-79,Story,Monitor/Adapt/Learn,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-TD-80,Story,Monitor/Adapt/Learn,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-TD-81,Story,Monitor/Adapt/Learn,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-TD-82,Story,Monitor/Adapt/Learn,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-83,Story,Monitor/Adapt/Learn,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-TD-84,Story,Monitor/Adapt/Learn,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-85,Story,Monitor/Adapt/Learn,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-TD-86,Story,Monitor/Adapt/Learn,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-TD-87,Story,Monitor/Adapt/Learn,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-88,Story,Monitor/Adapt/Learn,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-89,Story,Monitor/Adapt/Learn,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-TD-90,Story,Monitor/Adapt/Learn,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-TD-91,Story,Monitor/Adapt/Learn,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-TD-92,Story,Monitor/Adapt/Learn,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-TD-93,Story,Monitor/Adapt/Learn,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-TD-94,Story,Monitor/Adapt/Learn,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-TD-95,Story,Monitor/Adapt/Learn,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-TD-96,Story,Monitor/Adapt/Learn,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-97,Story,Monitor/Adapt/Learn,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-TD-98,Story,Monitor/Adapt/Learn,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-TD-99,Story,Monitor/Adapt/Learn,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-TD-100,Story,Monitor/Adapt/Learn,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-TD-101,Story,Monitor/Adapt/Learn,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-102,Story,Monitor/Adapt/Learn,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-103,Story,Monitor/Adapt/Learn,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-TD-104,Story,Monitor/Adapt/Learn,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-105,Story,Monitor/Adapt/Learn,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-TD-106,Story,Monitor/Adapt/Learn,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-TD-107,Story,Monitor/Adapt/Learn,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-TD-108,Story,Monitor/Adapt/Learn,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-TD-109,Story,Monitor/Adapt/Learn,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-TD-110,Story,Monitor/Adapt/Learn,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-TD-111,Story,Monitor/Adapt/Learn,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-TD-112,Story,Monitor/Adapt/Learn,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-TD-113,Story,Monitor/Adapt/Learn,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-TD-114,Story,Monitor/Adapt/Learn,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-115,Story,Monitor/Adapt/Learn,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-TD-116,Story,Monitor/Adapt/Learn,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-117,Story,Monitor/Adapt/Learn,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-TD-118,Story,Monitor/Adapt/Learn,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-119,Story,Monitor/Adapt/Learn,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-TD-120,Story,Monitor/Adapt/Learn,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-121,Story,Monitor/Adapt/Learn,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-TD-122,Story,Monitor/Adapt/Learn,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-123,Story,Monitor/Adapt/Learn,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-TD-124,Story,Monitor/Adapt/Learn,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-125,Story,Monitor/Adapt/Learn,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-TD-126,Story,Monitor/Adapt/Learn,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-127,Story,Monitor/Adapt/Learn,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-128,Story,Monitor/Adapt/Learn,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-129,Story,Monitor/Adapt/Learn,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-130,Story,Monitor/Adapt/Learn,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-TD-131,Story,Monitor/Adapt/Learn,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-132,Story,Monitor/Adapt/Learn,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-TD-133,Story,Monitor/Adapt/Learn,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-TD-134,Story,Monitor/Adapt/Learn,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-TD-135,Story,Monitor/Adapt/Learn,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-TD-136,Story,Monitor/Adapt/Learn,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-TD-137,Story,Monitor/Adapt/Learn,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-138,Story,Monitor/Adapt/Learn,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-TD-139,Story,Monitor/Adapt/Learn,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-TD-140,Story,Monitor/Adapt/Learn,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-TD-141,Story,Monitor/Adapt/Learn,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-142,Story,Monitor/Adapt/Learn,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-TD-143,Story,Monitor/Adapt/Learn,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-TD-144,Story,Monitor/Adapt/Learn,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-TD-145,Story,Monitor/Adapt/Learn,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-TD-146,Story,Monitor/Adapt/Learn,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-TD-147,Story,Monitor/Adapt/Learn,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-TD-148,Story,Monitor/Adapt/Learn,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-TD-149,Story,Monitor/Adapt/Learn,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-150,Story,Monitor/Adapt/Learn,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-TD-151,Story,Monitor/Adapt/Learn,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-152,Story,Monitor/Adapt/Learn,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-TD-153,Story,Monitor/Adapt/Learn,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-TD-154,Story,Monitor/Adapt/Learn,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-TD-155,Story,Monitor/Adapt/Learn,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-TD-156,Story,Monitor/Adapt/Learn,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-TD-157,Story,Monitor/Adapt/Learn,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-TD-158,Story,Ready for release,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-TD-159,Story,Ready for release,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-TD-160,Story,Ready for release,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-TD-161,Story,Code Review,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-TD-162,Story,Code Review,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-TD-163,Story,Code Review,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic

@@ -1,0 +1,1599 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jira Flow Analytics Dashboard</title>
+    <!-- Modern Google Fonts -->
+    <!-- Chart.js and PapaParse via CDN -->
+    <script src="vendor/chart.umd.js"></script>
+    <script src="vendor/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <script src="flow_metrics.js"></script>
+    <script src="vendor/papaparse.min.js"></script>
+    <script src="vendor/localforage.min.js"></script>
+
+    <style>
+      :root {
+        /* Light Mode Default Theme */
+        --bg-color: #f9fafb;
+        --panel-bg: #ffffff;
+        --panel-border: #e5e7eb;
+        --panel-hover: #f3f4f6;
+        --sidebar-bg: #f3f4f6;
+        --checklist-bg: #ffffff;
+        --table-header-bg: #f3f4f6;
+        --table-border: #e5e7eb;
+        --table-hover-bg: #f9fafb;
+        --text-color: #111827;
+        --text-muted: #6b7280;
+        --accent-color: #3b82f6;
+        --accent-glow: rgba(59, 130, 246, 0.2);
+        --success-color: #10b981;
+        --warning-color: #f59e0b;
+        --danger-color: #ef4444;
+        --p50-color: #10b981;
+        --p85-color: #f59e0b;
+        --card-glow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        --header-bg: linear-gradient(90deg, #f3f4f6 0%, #ffffff 100%);
+        --grid-color: rgba(0, 0, 0, 0.06);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          /* Dark Mode Theme Override */
+          --bg-color: #0b0f19;
+          --panel-bg: #161e31;
+          --panel-border: #24314f;
+          --panel-hover: #1e2942;
+          --sidebar-bg: #0f1626;
+          --checklist-bg: #111827;
+          --table-header-bg: #111827;
+          --table-border: #1f293d;
+          --table-hover-bg: #1e293b;
+          --text-color: #f3f4f6;
+          --text-muted: #9ca3af;
+          --accent-color: #3b82f6;
+          --accent-glow: rgba(59, 130, 246, 0.4);
+          --success-color: #10b981;
+          --warning-color: #f59e0b;
+          --danger-color: #ef4444;
+          --p50-color: #10b981;
+          --p85-color: #f59e0b;
+          --card-glow: 0 4px 20px rgba(0, 0, 0, 0.3);
+          --header-bg: linear-gradient(90deg, #111827 0%, #161e31 100%);
+          --grid-color: rgba(255, 255, 255, 0.06);
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: 'Outfit', sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
+      }
+
+      /* Top Header */
+      header {
+        background: var(--header-bg);
+        border-bottom: 1px solid var(--panel-border);
+        padding: 1.25rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: var(--card-glow);
+      }
+
+      .header-title h1 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: -0.025em;
+        background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .header-title p {
+        font-size: 0.825rem;
+        color: var(--text-muted);
+        margin-top: 0.2rem;
+      }
+
+      .file-upload-btn {
+        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        color: white;
+        border: none;
+        padding: 0.6rem 1.25rem;
+        border-radius: 8px;
+        font-weight: 500;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        box-shadow: 0 0 12px var(--accent-glow);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .file-upload-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 0 18px rgba(59, 130, 246, 0.6);
+      }
+
+      /* Drag and Drop Landing Zone */
+      #uploadZone {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 3rem;
+        margin: 3rem auto;
+        max-width: 600px;
+        width: 90%;
+        background-color: var(--panel-bg);
+        border: 2px dashed #3b82f6;
+        border-radius: 16px;
+        text-align: center;
+        cursor: pointer;
+        box-shadow: var(--card-glow);
+        transition: all 0.3s ease;
+      }
+
+      #uploadZone:hover {
+        border-color: var(--accent-color);
+        background-color: var(--panel-hover);
+        transform: scale(1.02);
+      }
+
+      #uploadZone svg {
+        width: 64px;
+        height: 64px;
+        color: var(--accent-color);
+        margin-bottom: 1.5rem;
+      }
+
+      #uploadZone h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      #uploadZone p {
+        color: var(--text-muted);
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+      }
+
+      /* Dashboard Workspace Layout */
+      .dashboard-container {
+        display: none; /* Shown after upload */
+        flex: 1;
+        grid-template-columns: 280px 1fr;
+        min-height: calc(100vh - 75px);
+      }
+
+      /* Left Sidebar (Filters) */
+      aside {
+        background-color: var(--sidebar-bg);
+        border-right: 1px solid var(--panel-border);
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        max-height: calc(100vh - 75px);
+        overflow-y: auto;
+      }
+
+      .filter-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .filter-label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--text-muted);
+      }
+
+      select,
+      input[type='date'] {
+        width: 100%;
+        background-color: var(--panel-bg);
+        border: 1px solid var(--panel-border);
+        color: var(--text-color);
+        padding: 0.6rem;
+        border-radius: 6px;
+        font-family: inherit;
+        font-size: 0.9rem;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+
+      select:focus,
+      input[type='date']:focus {
+        border-color: var(--accent-color);
+      }
+
+      .state-checklist {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        max-height: 180px;
+        overflow-y: auto;
+        border: 1px solid var(--panel-border);
+        padding: 0.5rem;
+        border-radius: 6px;
+        background-color: var(--checklist-bg);
+      }
+
+      .state-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.85rem;
+        cursor: pointer;
+      }
+
+      .state-item input {
+        cursor: pointer;
+      }
+
+      /* Main Workspace Content */
+      main {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        overflow-y: auto;
+        max-height: calc(100vh - 75px);
+        scroll-behavior: smooth;
+      }
+
+      /* Top Navigation */
+      .dashboard-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding: 0.75rem;
+        background: var(--sidebar-bg);
+        border-radius: 8px;
+        position: sticky;
+        top: -1rem;
+        z-index: 50;
+        border: 1px solid var(--panel-border);
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+        margin-bottom: -0.5rem;
+      }
+      .dashboard-nav a {
+        color: var(--text-color);
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+        padding: 0.4rem 0.8rem;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+      }
+      .dashboard-nav a:hover {
+        background: var(--primary-color);
+        color: white;
+      }
+
+      /* KPI Cards Grid */
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1.25rem;
+      }
+
+      .kpi-card {
+        background-color: var(--panel-bg);
+        border: 1px solid var(--panel-border);
+        border-radius: 12px;
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        box-shadow: var(--card-glow);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .kpi-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background-color: var(--accent-color);
+      }
+
+      .kpi-card.p50::before {
+        background-color: var(--p50-color);
+      }
+      .kpi-card.p85::before {
+        background-color: var(--p85-color);
+      }
+
+      .kpi-title {
+        font-size: 0.775rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--text-muted);
+      }
+
+      .kpi-value {
+        font-size: 1.75rem;
+        font-weight: 700;
+      }
+
+      .kpi-sub {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+      }
+
+      /* Chart Panels */
+      .chart-panel {
+        background-color: var(--panel-bg);
+        border: 1px solid var(--panel-border);
+        border-radius: 16px;
+        padding: 1.5rem;
+        box-shadow: var(--card-glow);
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .chart-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--panel-border);
+        padding-bottom: 0.75rem;
+      }
+
+      .chart-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+
+      .chart-subtitle {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        margin-top: 0.1rem;
+      }
+
+      .chart-container {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        height: auto;
+        max-height: 80vh;
+      }
+
+      .copy-btn {
+        background: var(--panel-bg);
+        border: 1px solid var(--panel-border);
+        color: var(--text-color);
+        padding: 0.4rem 0.8rem;
+        border-radius: 6px;
+        font-size: 0.8rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        transition: all 0.2s;
+        white-space: nowrap;
+      }
+      .copy-btn:hover {
+        background: var(--panel-hover);
+        border-color: var(--accent-color);
+      }
+
+      /* Data Table Panel */
+      .table-panel {
+        background-color: var(--panel-bg);
+        border: 1px solid var(--panel-border);
+        border-radius: 16px;
+        padding: 1.5rem;
+        box-shadow: var(--card-glow);
+      }
+
+      .table-wrapper {
+        overflow-x: auto;
+        max-height: 350px;
+        margin-top: 1rem;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.875rem;
+        text-align: left;
+      }
+
+      th {
+        background-color: var(--table-header-bg);
+        padding: 0.75rem 1rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        border-bottom: 1px solid var(--panel-border);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+
+      td {
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid var(--table-border);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 250px;
+      }
+
+      tr:hover td {
+        background-color: var(--table-hover-bg);
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      /* ── Print / PDF ─────────────────────────────────────────────── */
+      @page {
+        size: A4 landscape;
+        margin: 1.2cm;
+      }
+
+      @media print {
+        * {
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+        }
+
+        body {
+          background: white !important;
+        }
+
+        header {
+          background: white !important;
+          padding: 0.5rem 1rem !important;
+          border-bottom: 2px solid #374151 !important;
+          display: flex !important;
+          justify-content: space-between !important;
+          align-items: center !important;
+        }
+        header button,
+        header input {
+          display: none !important;
+        }
+
+        .print-report-meta {
+          display: block !important;
+          font-size: 0.75rem;
+          color: #6b7280;
+        }
+
+        #uploadZone {
+          display: none !important;
+        }
+
+        .dashboard-container {
+          display: block !important;
+          min-height: unset !important;
+        }
+        aside {
+          display: none !important;
+        }
+        main {
+          width: 100% !important;
+          padding: 0 !important;
+        }
+
+        .kpi-grid {
+          display: grid !important;
+          grid-template-columns: repeat(5, 1fr) !important;
+          gap: 0.5rem !important;
+          margin-bottom: 1rem !important;
+          page-break-inside: avoid;
+        }
+        .kpi-card {
+          box-shadow: none !important;
+          border: 1px solid #e5e7eb !important;
+        }
+
+        .chart-panel {
+          page-break-before: always;
+          page-break-inside: avoid;
+          box-shadow: none !important;
+          border: 1px solid #e5e7eb !important;
+          margin: 0 0 0.5rem 0 !important;
+          border-radius: 8px !important;
+        }
+        #kpiSection + .chart-panel {
+          page-break-before: avoid;
+        }
+
+        .chart-container canvas {
+          display: none;
+        }
+        .chart-print-img {
+          display: block !important;
+          width: 100% !important;
+          height: auto !important;
+        }
+
+        .controls-row,
+        .toggle-btn-group,
+        [class*='tab-'] {
+          display: none !important;
+        }
+      }
+
+      .print-report-meta {
+        display: none;
+      }
+      .chart-print-img {
+        display: none;
+      }
+
+      /* AI Chart Insights */
+      .ai-chart-insight-container {
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px dashed var(--panel-border);
+      }
+      .ai-insight-btn {
+        background: rgba(16, 185, 129, 0.08);
+        border: 1px dashed var(--success-color);
+        color: var(--success-color);
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 0.85em;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: all 0.2s ease-in-out;
+      }
+      .ai-insight-btn:hover {
+        background: rgba(16, 185, 129, 0.16);
+        border-style: solid;
+        transform: translateY(-1px);
+      }
+      .ai-insight-btn:active {
+        transform: translateY(0);
+      }
+      .ai-insight-card {
+        display: none;
+        margin-top: 12px;
+        padding: 1.25rem;
+        background: var(--checklist-bg);
+        border: 1px solid var(--panel-border);
+        border-left: 4px solid var(--success-color);
+        border-radius: 6px;
+        font-size: 0.9em;
+        color: var(--text-color);
+        line-height: 1.6;
+        box-shadow: var(--card-glow);
+      }
+      .ai-insight-card h5 {
+        color: var(--accent-color);
+        font-size: 1.05em;
+        margin-top: 12px;
+        margin-bottom: 6px;
+        font-weight: 600;
+      }
+      .ai-insight-card h5:first-of-type {
+        margin-top: 0;
+      }
+      .ai-insight-card p {
+        margin-bottom: 8px;
+      }
+      .ai-insight-card ul {
+        margin-left: 20px;
+        margin-bottom: 8px;
+      }
+      .ai-insight-card li {
+        list-style-type: disc;
+        margin-bottom: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="header-title">
+        <h1>Jira Flow Dashboard</h1>
+        <p>Flow Analytics Diagnostics (CFD & Control Chart Dashboard)</p>
+      </div>
+      <div style="display: flex; gap: 0.75rem; align-items: center">
+        <span class="print-report-meta" id="printMeta"></span>
+        <button class="file-upload-btn" onclick="printReport()" title="Download PDF Report">
+          <svg
+            width="16"
+            height="16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"
+            />
+          </svg>
+          Download PDF
+        </button>
+        <input type="file" id="folderInput" webkitdirectory directory multiple class="hidden" />
+        <button class="file-upload-btn" onclick="document.getElementById('folderInput').click()">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path
+              d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"
+            />
+            <path
+              d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"
+            />
+          </svg>
+          Load Data Folder
+        </button>
+        <button
+          class="file-upload-btn"
+          style="background: #059669"
+          onclick="document.getElementById('apiSettingsModal').style.display = 'flex'"
+        >
+          ⚙️ AI Settings
+        </button>
+        <button id="clearSavedDataBtn" class="file-upload-btn" style="background: #374151">
+          Clear saved data
+        </button>
+      </div>
+    </header>
+
+    <!-- Upload Landing Zone -->
+    <div id="uploadZone" onclick="document.getElementById('folderInput').click()">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
+      </svg>
+      <h2>Analyze Flow Metrics</h2>
+      <p>
+        Select a folder containing the required CSV files
+        (<strong>flow_analytics_export.csv</strong>, <strong>sprint_data.csv</strong>,
+        <strong>issue_metadata.csv</strong>) to instantly populate the dashboard.
+      </p>
+      <button class="file-upload-btn" style="box-shadow: none">Select Data Folder</button>
+    </div>
+
+    <!-- Dashboard Container -->
+    <div class="dashboard-container" id="dashboardContainer">
+      <!-- Filters Sidebar -->
+      <aside>
+        <!-- Project Filter -->
+        <div class="filter-group">
+          <label class="filter-label">Project / Space</label>
+          <select id="projFilter">
+            <option value="All">All Projects</option>
+          </select>
+        </div>
+
+        <!-- Issue Type Filter (Multi-Select Checklist) -->
+        <div class="filter-group">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <label class="filter-label">Issue Type</label>
+            <button type="button" id="toggleAllTypesBtn" style="background: none; border: none; color: var(--accent-color); font-size: 0.75rem; cursor: pointer; padding: 0;">Toggle All</button>
+          </div>
+          <div id="typeChecklist" class="state-checklist" style="max-height: 140px;">
+            <!-- Populated dynamically with checkboxes -->
+          </div>
+          <select id="typeFilter" style="display: none;">
+            <option value="All">All Types</option>
+          </select>
+        </div>
+
+        <!-- Label Filter -->
+        <div class="filter-group">
+          <label class="filter-label">Label</label>
+          <select id="labelFilter">
+            <option value="All">All Labels</option>
+          </select>
+        </div>
+
+        <!-- Resolution Filter -->
+        <div class="filter-group">
+          <label class="filter-label">Resolution</label>
+          <select id="resolutionFilter">
+            <option value="All">All Resolutions</option>
+          </select>
+        </div>
+
+        <!-- Unplanned Filter -->
+        <div class="filter-group">
+          <label class="filter-label">Unplanned</label>
+          <select id="unplannedFilter">
+            <option value="All">All</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+
+        <!-- Epic Filter -->
+        <div class="filter-group">
+          <label class="filter-label">Epic Link</label>
+          <select id="epicFilter">
+            <option value="All">All Epics</option>
+          </select>
+        </div>
+
+        <!-- Date Range Filters -->
+        <div class="filter-group">
+          <label class="filter-label">Start Date</label>
+          <input type="date" id="startDateFilter" />
+        </div>
+        <div class="filter-group">
+          <label class="filter-label">End Date</label>
+          <input type="date" id="endDateFilter" />
+        </div>
+
+        <!-- Cycle Time Definition -->
+        <div
+          class="filter-group"
+          style="border-top: 1px solid var(--panel-border); padding-top: 1rem"
+        >
+          <label class="filter-label" style="color: #60a5fa">Cycle Time Definition</label>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.25rem">
+            <div>
+              <span style="font-size: 0.75rem; color: var(--text-muted)">Start State:</span>
+              <select id="cycleStartTimeState">
+                <option value="Implement">Implement</option>
+              </select>
+            </div>
+            <div>
+              <span style="font-size: 0.75rem; color: var(--text-muted)">End State:</span>
+              <select id="cycleEndTimeState">
+                <option value="Done">Done</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- CFD States Checklist -->
+        <div
+          class="filter-group"
+          style="border-top: 1px solid var(--panel-border); padding-top: 1rem"
+        >
+          <label class="filter-label">CFD Stack States</label>
+          <div class="state-checklist" id="cfdStatesChecklist">
+            <!-- Loaded dynamically -->
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Dashboard Workspace -->
+      <main>
+        <!-- Top Navigation -->
+        <nav class="dashboard-nav">
+          <a href="#kpiSection">KPIs</a>
+          <a href="#coachingSection">Flow Coach 🤖</a>
+          <a href="#cfdSection">CFD</a>
+          <a href="#wipSection">WIP Run</a>
+          <a href="#controlSection">Control Chart</a>
+          <a href="#ageSection">Item Aging</a>
+          <a href="#throughputSection">Throughput</a>
+          <a href="#defectTrendSection">Defect Trend</a>
+          <a href="#valueCurveSection">Value Curve</a>
+          <a href="#carryoverSection">Carryover</a>
+          <a href="#estimationSection">Estimation</a>
+          <a href="#cometSection">Sprint Comet</a>
+          <a href="#dependencySection">Dependencies</a>
+          <a href="#dataSection">Data Table</a>
+          <a
+            href="value_dashboard.html"
+            style="
+              background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+              color: white;
+              border-radius: 6px;
+              padding: 0.4rem 0.8rem;
+              font-weight: 600;
+              margin-left: auto;
+            "
+            >Value & Outcomes 🚀</a
+          >
+        </nav>
+
+        <!-- KPI Cards Grid -->
+        <div class="kpi-grid" id="kpiSection">
+          <div class="kpi-card">
+            <div class="kpi-title">Total Completed</div>
+            <div class="kpi-value" id="kpiCompleted">-</div>
+            <div class="kpi-sub">Issues reached Done</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-title">Avg Cycle Time</div>
+            <div class="kpi-value" id="kpiAvgCt">-</div>
+            <div class="kpi-sub">Average elapsed days</div>
+          </div>
+          <div class="kpi-card p50">
+            <div class="kpi-title">50% Confidence (p50)</div>
+            <div class="kpi-value" id="kpiP50">-</div>
+            <div class="kpi-sub">Median delivery speed</div>
+          </div>
+          <div class="kpi-card p85">
+            <div class="kpi-title">85% Confidence (p85)</div>
+            <div class="kpi-value" id="kpiP85">-</div>
+            <div class="kpi-sub">Predictable SLA window</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-title">Active WIP</div>
+            <div class="kpi-value" id="kpiWip">-</div>
+            <div class="kpi-sub">In-flight active issues</div>
+          </div>
+        </div>
+
+        <!-- Flow Coaching Copilot Section -->
+        <div class="chart-panel" id="coachingSection" style="margin-bottom: 25px">
+          <div
+            class="chart-header"
+            style="display: flex; justify-content: space-between; align-items: center; width: 100%"
+          >
+            <div>
+              <h3 class="chart-title">Flow Coach Copilot 🤖</h3>
+              <p class="chart-subtitle" style="margin-top: 4px">
+                Opinionated coaching recommendations and insights compiled from your flow metrics,
+                blocker history, and outcome taxonomies.
+              </p>
+            </div>
+            <div style="display: flex; gap: 0.75rem; align-items: center">
+              <button
+                id="copyPromptBtn"
+                style="
+                  background: #374151;
+                  color: white;
+                  border: 1px solid var(--panel-border);
+                  padding: 0.6rem 1.2rem;
+                  border-radius: 6px;
+                  font-weight: 600;
+                  cursor: pointer;
+                  transition: opacity 0.2s;
+                "
+              >
+                Copy Prompt 📋
+              </button>
+              <button
+                id="runAiCoachBtn"
+                style="
+                  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+                  color: white;
+                  border: none;
+                  padding: 0.6rem 1.2rem;
+                  border-radius: 6px;
+                  font-weight: 600;
+                  cursor: pointer;
+                  transition: opacity 0.2s;
+                "
+              >
+                Run AI Coach 🤖
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="kpi-grid"
+            style="
+              grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+              margin-top: 20px;
+              gap: 20px;
+              border: none;
+              padding: 0;
+              background: transparent;
+            "
+          >
+            <div
+              class="kpi-card"
+              style="
+                text-align: left;
+                height: auto;
+                border-top: 4px solid #f59e0b;
+                padding: 1.5rem;
+                background: var(--panel-bg);
+              "
+            >
+              <div
+                class="kpi-title"
+                style="
+                  font-size: 1em;
+                  font-weight: 700;
+                  color: #f59e0b;
+                  margin-bottom: 12px;
+                  text-transform: none;
+                  letter-spacing: normal;
+                "
+              >
+                🏃 Capacity Pull Advisor (Sprint Planning)
+              </div>
+              <p
+                id="coachingSprintAdvice"
+                style="font-size: 0.9em; color: #d1d5db; line-height: 1.5; margin: 0"
+              ></p>
+            </div>
+            <div
+              class="kpi-card"
+              style="
+                text-align: left;
+                height: auto;
+                border-top: 4px solid #ef4444;
+                padding: 1.5rem;
+                background: var(--panel-bg);
+              "
+            >
+              <div
+                class="kpi-title"
+                style="
+                  font-size: 1em;
+                  font-weight: 700;
+                  color: #ef4444;
+                  margin-bottom: 12px;
+                  text-transform: none;
+                  letter-spacing: normal;
+                "
+              >
+                🔍 Retrospective Focus (Top Blocker)
+              </div>
+              <p
+                id="coachingRetroAdvice"
+                style="font-size: 0.9em; color: #d1d5db; line-height: 1.5; margin: 0"
+              ></p>
+            </div>
+            <div
+              class="kpi-card"
+              style="
+                text-align: left;
+                height: auto;
+                border-top: 4px solid #3b82f6;
+                padding: 1.5rem;
+                background: var(--panel-bg);
+              "
+            >
+              <div
+                class="kpi-title"
+                style="
+                  font-size: 1em;
+                  font-weight: 700;
+                  color: #3b82f6;
+                  margin-bottom: 12px;
+                  text-transform: none;
+                  letter-spacing: normal;
+                "
+              >
+                ⚠️ Daily Scrum Swarm Alerts (Aging WIP)
+              </div>
+              <p
+                id="coachingStandupAdvice"
+                style="font-size: 0.9em; color: #d1d5db; line-height: 1.5; margin: 0"
+              ></p>
+            </div>
+            <div
+              class="kpi-card"
+              style="
+                text-align: left;
+                height: auto;
+                border-top: 4px solid #8b5cf6;
+                padding: 1.5rem;
+                background: var(--panel-bg);
+              "
+            >
+              <div
+                class="kpi-title"
+                style="
+                  font-size: 1em;
+                  font-weight: 700;
+                  color: #8b5cf6;
+                  margin-bottom: 12px;
+                  text-transform: none;
+                  letter-spacing: normal;
+                "
+              >
+                🎯 Outcome Alignment Score (Feature Factory Check)
+              </div>
+              <p
+                id="coachingOutcomeAdvice"
+                style="font-size: 0.9em; color: #d1d5db; line-height: 1.5; margin: 0"
+              ></p>
+            </div>
+            <div
+              class="kpi-card"
+              style="
+                text-align: left;
+                height: auto;
+                border-top: 4px solid #10b981;
+                padding: 1.5rem;
+                background: var(--panel-bg);
+              "
+            >
+              <div
+                class="kpi-title"
+                style="
+                  font-size: 1em;
+                  font-weight: 700;
+                  color: #10b981;
+                  margin-bottom: 12px;
+                  text-transform: none;
+                  letter-spacing: normal;
+                "
+              >
+                💡 Innovation Rate (Value vs. Failure Demand)
+              </div>
+              <p
+                id="coachingInnovationAdvice"
+                style="font-size: 0.9em; color: #d1d5db; line-height: 1.5; margin: 0"
+              ></p>
+            </div>
+          </div>
+
+          <!-- AI Deep Dive Report Card -->
+          <div
+            id="aiCoachingDeepDiveCard"
+            style="
+              display: none;
+              margin-top: 20px;
+              padding: 1.5rem;
+              background: var(--panel-bg);
+              border: 1px solid var(--panel-border);
+              border-radius: 8px;
+            "
+          >
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 12px;
+              "
+            >
+              <h4 style="margin: 0; color: #10b981; font-size: 1.1em; font-weight: 700">
+                🤖 AI Coach Deep Dive Report
+              </h4>
+              <span style="font-size: 0.75rem; color: var(--text-muted)"
+                >Generated via Gemini API</span
+              >
+            </div>
+            <div
+              id="aiCoachingDeepDiveContent"
+              style="font-size: 0.95em; color: #e5e7eb; line-height: 1.6; white-space: pre-wrap"
+            >
+              <!-- AI Response populated here -->
+            </div>
+          </div>
+        </div>
+
+        <!-- CFD Chart Area -->
+        <div class="chart-panel" id="cfdSection">
+          <div class="chart-header">
+            <div>
+              <h3 class="chart-title">Cumulative Flow Diagram (CFD)</h3>
+              <p class="chart-subtitle">
+                Tracks issue counts by state over time. Ideal for identifying queues and WIP bloat.
+              </p>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas id="cfdChartCanvas"></canvas>
+          </div>
+          <div class="ai-chart-insight-container">
+            <button class="ai-insight-btn" id="cfdAiInsightBtn">
+              <span>🤖 Get CFD AI Insight</span>
+            </button>
+            <div class="ai-insight-card" id="cfdAiInsightCard"></div>
+          </div>
+        </div>
+
+        <!-- WIP Run Chart Area -->
+        <div class="chart-panel" id="wipSection">
+          <div class="chart-header">
+            <div>
+              <h3 class="chart-title">WIP Run Chart</h3>
+              <p class="chart-subtitle">
+                Tracks active WIP day by day to show flow stability over time.
+              </p>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas id="wipRunChartCanvas"></canvas>
+          </div>
+        </div>
+
+        <!-- Control Chart Area -->
+        <div class="chart-panel" id="controlSection">
+          <div class="chart-header">
+            <div>
+              <h3 class="chart-title">Cycle Time Control Chart</h3>
+              <p class="chart-subtitle">
+                Scatterplot of completed items over time. Each slice gets its own 50% (dotted) and
+                85% SLE (dashed) lines in the slice color, so you can set a different SLE per slice.
+              </p>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px">
+              <label for="colorBySelect" class="filter-label">Color By:</label>
+              <select id="colorBySelect">
+                <option value="type">Issue Type</option>
+                <option value="label">Label</option>
+                <option value="workclass">Work Class (Value / Failure / Maintenance)</option>
+                <option value="unplanned">Planned / Unplanned</option>
+                <option value="resolution">Resolution</option>
+              </select>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas id="controlChartCanvas"></canvas>
+          </div>
+          <div class="ai-chart-insight-container">
+            <button class="ai-insight-btn" id="controlAiInsightBtn">
+              <span>🤖 Get Control Chart AI Insight</span>
+            </button>
+            <div class="ai-insight-card" id="controlAiInsightCard"></div>
+          </div>
+        </div>
+
+        <!-- Work Item Age Chart Area -->
+        <div class="chart-panel" id="ageSection">
+          <div class="chart-header">
+            <div>
+              <h3 class="chart-title">Work Item Age Chart (Active WIP)</h3>
+              <p class="chart-subtitle">
+                Scatterplot of active, unfinished items and how many days they've been in progress.
+                Leading indicator for SLA breaches.
+              </p>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas id="workItemAgeChartCanvas"></canvas>
+          </div>
+          <div id="worryingCardsList" style="margin-top: 1.5rem"></div>
+        </div>
+
+        <!-- Throughput Run Chart Area -->
+        <div class="chart-panel" id="throughputSection">
+          <div
+            class="chart-header"
+            style="justify-content: space-between; align-items: flex-start; display: flex"
+          >
+            <div>
+              <h3 class="chart-title">Flow Distribution</h3>
+              <p class="chart-subtitle">
+                Stacked bar chart of items completed per week, broken down by selected category.
+              </p>
+            </div>
+            <div class="controls-row">
+              <div class="control-group">
+                <label for="throughputTimebucketSelect" class="filter-label">Group By:</label>
+                <select id="throughputTimebucketSelect">
+                  <option value="week">Week</option>
+                  <option value="month">Month</option>
+                  <option value="quarter">Quarter</option>
+                  <option value="sprint">Sprint</option>
+                </select>
+              </div>
+              <div class="control-group">
+                <label for="throughputColorBySelect" class="filter-label">Breakdown By:</label>
+                <select id="throughputColorBySelect">
+                  <option value="type">Issue Type</option>
+                  <option value="label">Label</option>
+                  <option value="workclass">Work Class (Value / Failure / Maintenance)</option>
+                  <option value="unplanned">Unplanned</option>
+                  <option value="resolution">Resolution</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas id="throughputChartCanvas"></canvas>
+          </div>
+        </div>
+
+        <!-- Defect Trend Chart Area (Experimental) -->
+        <div class="chart-panel" id="defectTrendSection">
+          <div class="chart-header">
+            <div>
+              <h3 class="chart-title">
+                Defect Trend
+                <span
+                  style="
+                    font-size: 0.6em;
+                    vertical-align: middle;
+                    background: #7c2d12;
+                    color: #fdba74;
+                    padding: 2px 8px;
+                    border-radius: 10px;
+                    font-weight: 700;
+                    letter-spacing: 0.5px;
+                  "
+                  >EXPERIMENTAL</span
+                >
+              </h3>
+              <p class="chart-subtitle">
+                Failure-demand (rework/defect) items created over time — an EBM Ability-to-Innovate
+                signal. A rising slope means quality is eroding and rework is crowding out new
+                value.
+              </p>
+              <p
+                id="defectTrendNote"
+                style="font-size: 0.8em; color: var(--text-muted); margin-top: 6px"
+              ></p>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas id="defectTrendChartCanvas"></canvas>
+          </div>
+        </div>
+
+        <!-- Value Delivery Curve Chart Area (Experimental) -->
+        <div class="chart-panel" id="valueCurveSection">
+          <div class="chart-header">
+            <div>
+              <h3 class="chart-title">
+                Value Delivery Curve
+                <span
+                  style="
+                    font-size: 0.6em;
+                    vertical-align: middle;
+                    background: #7c2d12;
+                    color: #fdba74;
+                    padding: 2px 8px;
+                    border-radius: 10px;
+                    font-weight: 700;
+                    letter-spacing: 0.5px;
+                  "
+                  >EXPERIMENTAL</span
+                >
+              </h3>
+              <p class="chart-subtitle">
+                Cumulative value delivered, actual sequencing vs. an ideal value-first sequence.
+                Uses Cost of Delay if present, else Priority, else backlog Rank, else FIFO arrival
+                order.
+              </p>
+              <p
+                id="valueCurveNote"
+                style="font-size: 0.8em; color: var(--text-muted); margin-top: 6px"
+              ></p>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas id="valueCurveChartCanvas"></canvas>
+          </div>
+        </div>
+
+        <!-- Sprint Carryover Chart Area -->
+        <div class="chart-panel" id="carryoverSection">
+          <div
+            class="chart-header"
+            style="justify-content: space-between; align-items: flex-start; display: flex"
+          >
+            <div>
+              <h3 class="chart-title">Sprint Predictability & Carryover</h3>
+              <p class="chart-subtitle">
+                Bar chart of items planned for the sprint vs completed in the sprint. Reference
+                lines show 85% &amp; 50% confidence based on completed items, with standard
+                deviation shaded.
+              </p>
+            </div>
+            <div class="controls-row">
+              <div class="control-group">
+                <label for="carryoverUnitSelect" class="filter-label">Measure By:</label>
+                <select id="carryoverUnitSelect">
+                  <option value="count">Issue Count</option>
+                  <option value="points">Story Points</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas id="sprintCarryoverChartCanvas"></canvas>
+          </div>
+          <div class="ai-chart-insight-container">
+            <button class="ai-insight-btn" id="carryoverAiInsightBtn">
+              <span>🤖 Get Carryover AI Insight</span>
+            </button>
+            <div class="ai-insight-card" id="carryoverAiInsightCard"></div>
+          </div>
+        </div>
+
+        <!-- Estimation vs Cycle Time Chart Area -->
+        <div class="chart-panel" id="estimationSection">
+          <div class="chart-header">
+            <div>
+              <h3 class="chart-title">Estimation vs Actual Cycle Time</h3>
+              <p class="chart-subtitle">
+                Scatter plot analyzing the correlation between estimated size and actual delivery
+                time.
+              </p>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas id="estimationChartCanvas"></canvas>
+          </div>
+          <div id="estimationConfidenceTable" style="margin-top: 1.5rem"></div>
+        </div>
+
+        <!-- Sprint Comet Chart Area -->
+        <div class="chart-panel" id="cometSection">
+          <div
+            class="chart-header"
+            style="justify-content: space-between; align-items: flex-start; display: flex"
+          >
+            <div>
+              <h3 class="chart-title">Sprint Comet Chart</h3>
+              <p class="chart-subtitle">
+                Visualizes cycle times and status transitions of issues within sprints.
+              </p>
+            </div>
+            <div class="controls-row">
+              <div class="control-group">
+                <label for="cometSizeSelect" class="filter-label">Size By:</label>
+                <select id="cometSizeSelect">
+                  <option value="uniform">Uniform</option>
+                  <option value="estimation">Estimation</option>
+                </select>
+              </div>
+              <div class="control-group">
+                <label for="cometLayoutSelect" class="filter-label">Layout:</label>
+                <select id="cometLayoutSelect">
+                  <option value="tetris">Tetris (Tracks)</option>
+                  <option value="cycle_time">Cycle Time (Log)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas id="sprintCometChartCanvas"></canvas>
+          </div>
+        </div>
+
+        <!-- Dependencies and Blockers Section -->
+        <div class="chart-section" id="dependencySection">
+          <div class="chart-header">
+            <h3 class="chart-title">Dependencies & Blockers</h3>
+          </div>
+
+          <div
+            class="kpi-grid"
+            style="grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px"
+          >
+            <div class="kpi-card" style="text-align: center; background: rgba(55, 65, 81, 0.4)">
+              <div class="kpi-title">Average Cycle Time (Unflagged)</div>
+              <div class="kpi-value" id="unflaggedCycleTimeKpi">-</div>
+            </div>
+            <div
+              class="kpi-card"
+              style="
+                text-align: center;
+                background: rgba(239, 68, 68, 0.1);
+                border: 1px solid rgba(239, 68, 68, 0.2);
+              "
+            >
+              <div class="kpi-title">Average Cycle Time (Flagged)</div>
+              <div class="kpi-value" id="flaggedCycleTimeKpi" style="color: #ef4444">-</div>
+              <div
+                style="font-size: 0.85em; color: #9ca3af; margin-top: 5px"
+                id="cycleTimePenaltyLabel"
+              >
+                Penalty: -
+              </div>
+            </div>
+          </div>
+
+          <!-- Dependency Network (Done Items) table (below the KPIs, full width) -->
+          <div class="kpi-card" style="margin-bottom: 25px">
+            <div class="kpi-title" style="margin-bottom: 12px">Dependency Network (Done Items)</div>
+            <div class="table-wrapper" style="max-height: 400px; overflow-y: auto">
+              <table style="width: 100%; text-align: left; font-size: 0.9em">
+                <thead>
+                  <tr>
+                    <th>Done Issue</th>
+                    <th>Dependency Link</th>
+                  </tr>
+                </thead>
+                <tbody id="doneDependenciesTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Total Flagged Days by Semantic Reason Chart (below the Dependency table) -->
+          <div class="chart-container" style="height: 300px; margin-bottom: 25px">
+            <canvas id="flagReasonChartCanvas"></canvas>
+          </div>
+
+          <!-- Most Flagged / Blocked Issues (Historical) table (below the Chart, full width) -->
+          <div class="kpi-card" style="margin-bottom: 20px">
+            <div class="kpi-title" style="margin-bottom: 12px">
+              Most Flagged / Blocked Issues (Historical)
+            </div>
+            <div class="table-wrapper" style="max-height: 400px; overflow-y: auto">
+              <table style="width: 100%; text-align: left; font-size: 0.9em">
+                <thead>
+                  <tr>
+                    <th>Key</th>
+                    <th>Total Days Flagged</th>
+                    <th>Reasons</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="flagImpactTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Issues Data Table -->
+        <div class="table-panel" id="dataSection">
+          <h3 class="chart-title">Analyzed Dataset</h3>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Key</th>
+                  <th>Summary</th>
+                  <th>Type</th>
+                  <th>Current Status</th>
+                  <th>Created Date</th>
+                  <th>Updated Date</th>
+                  <th>Cycle Time (Days)</th>
+                </tr>
+              </thead>
+              <tbody id="dataTableBody">
+                <!-- Populated dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- AI Settings Modal -->
+    <div
+      id="apiSettingsModal"
+      style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 10000;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <div
+        style="
+          background: var(--panel-bg);
+          border: 1px solid var(--panel-border);
+          border-radius: 12px;
+          padding: 2rem;
+          width: 450px;
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        "
+      >
+        <h3 style="margin-top: 0; color: white">AI Copilot Settings ⚙️</h3>
+        <p
+          style="
+            font-size: 0.85em;
+            color: var(--text-muted);
+            line-height: 1.4;
+            margin-bottom: 1.5rem;
+          "
+        >
+          Configure your Gemini Developer API Key to unlock direct in-browser AI coaching and
+          metrics insights. The key stays in this tab until you reload. After confirmation, AI coaching sends
+          selected metrics and labels directly to Google Gemini. Only share data you are authorized to send.
+        </p>
+        <div style="margin-bottom: 1.25rem">
+          <label
+            style="
+              display: block;
+              font-size: 0.85em;
+              font-weight: 600;
+              color: #d1d5db;
+              margin-bottom: 6px;
+            "
+            >Gemini API Key</label
+          >
+          <input
+            type="password"
+            id="geminiApiKeyInput"
+            placeholder="AIzaSy..."
+            style="
+              width: 100%;
+              padding: 0.6rem;
+              background: var(--main-bg);
+              border: 1px solid var(--panel-border);
+              border-radius: 6px;
+              color: white;
+              font-family: monospace;
+            "
+          />
+        </div>
+        <div style="margin-bottom: 1.25rem">
+          <label
+            style="
+              display: block;
+              font-size: 0.85em;
+              font-weight: 600;
+              color: #d1d5db;
+              margin-bottom: 6px;
+            "
+            >Gemini Model</label
+          >
+          <select
+            id="geminiModelSelect"
+            style="
+              width: 100%;
+              padding: 0.6rem;
+              background: var(--main-bg);
+              border: 1px solid var(--panel-border);
+              border-radius: 6px;
+              color: white;
+              font-family: sans-serif;
+            "
+          >
+            <option value="gemini-flash-latest">Gemini Flash Latest (Default / Recommended)</option>
+            <option value="gemini-2.0-flash">Gemini 2.0 Flash</option>
+            <option value="gemini-2.0-flash-lite">Gemini 2.0 Flash Lite</option>
+            <option value="gemini-2.5-flash-lite">Gemini 2.5 Flash Lite</option>
+            <option value="gemini-2.5-pro">Gemini 2.5 Pro</option>
+          </select>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem">
+          <button
+            onclick="document.getElementById('apiSettingsModal').style.display = 'none'"
+            style="
+              background: transparent;
+              border: 1px solid var(--panel-border);
+              color: #d1d5db;
+              padding: 0.5rem 1rem;
+              border-radius: 6px;
+              cursor: pointer;
+            "
+          >
+            Cancel
+          </button>
+          <button
+            id="saveApiSettingsBtn"
+            style="
+              background: #059669;
+              border: none;
+              color: white;
+              padding: 0.5rem 1rem;
+              border-radius: 6px;
+              cursor: pointer;
+              font-weight: 600;
+            "
+          >
+            Save Settings
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

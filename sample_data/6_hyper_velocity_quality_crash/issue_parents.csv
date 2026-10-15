@@ -1,0 +1,223 @@
+Issue Key,Issue Type,Current Status,Parent Key,Parent Summary,Parent Type
+FLOW-1,Story,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-2,Story,Done,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-3,Bug,Done,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-4,Story,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-5,Bug,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-6,Story,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-7,Story,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-8,Story,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-9,Bug,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-10,Story,Done,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-11,Story,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-12,Story,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-13,Story,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-14,Story,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-15,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-16,Bug,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-17,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-18,Story,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-19,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-20,Bug,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-21,Story,Done,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-22,Story,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-23,Story,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-24,Bug,Done,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-25,Story,Done,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-26,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-27,Bug,Done,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-28,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-29,Story,Done,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-30,Story,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-31,Story,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-32,Story,Done,EPIC-6,Integrate slack notification for flow metrics alerts,Epic
+FLOW-33,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-34,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-35,Story,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-36,Story,Done,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-37,Bug,Done,EPIC-6,Integrate slack notification for flow metrics alerts,Epic
+FLOW-38,Bug,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-39,Story,Done,EPIC-6,Integrate slack notification for flow metrics alerts,Epic
+FLOW-40,Story,Done,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-41,Story,Monitor/Adapt/Learn,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-42,Story,Done,EPIC-6,Integrate slack notification for flow metrics alerts,Epic
+FLOW-43,Bug,Code Review,EPIC-8,Implement flow efficiency analytics in the dashboard,Epic
+FLOW-44,Bug,Done,EPIC-6,Integrate slack notification for flow metrics alerts,Epic
+FLOW-45,Story,Done,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-46,Story,Code Review,EPIC-8,Implement flow efficiency analytics in the dashboard,Epic
+FLOW-47,Story,Code Review,EPIC-8,Implement flow efficiency analytics in the dashboard,Epic
+FLOW-48,Story,Code Review,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-49,Story,Code Review,EPIC-8,Implement flow efficiency analytics in the dashboard,Epic
+FLOW-50,Story,Code Review,EPIC-6,Integrate slack notification for flow metrics alerts,Epic
+FLOW-51,Story,Monitor/Adapt/Learn,EPIC-6,Integrate slack notification for flow metrics alerts,Epic
+FLOW-52,Bug,Code Review,EPIC-8,Implement flow efficiency analytics in the dashboard,Epic
+FLOW-53,Story,Code Review,EPIC-8,Implement flow efficiency analytics in the dashboard,Epic
+FLOW-54,Story,Code Review,EPIC-7,Reduce average build and deployment pipeline time by 50%,Epic
+FLOW-55,Story,Ready for release,EPIC-7,Reduce average build and deployment pipeline time by 50%,Epic
+FLOW-56,Story,Code Review,EPIC-7,Reduce average build and deployment pipeline time by 50%,Epic
+FLOW-57,Bug,Code Review,EPIC-7,Reduce average build and deployment pipeline time by 50%,Epic
+FLOW-58,Story,Code Review,EPIC-7,Reduce average build and deployment pipeline time by 50%,Epic
+FLOW-59,Bug,Code Review,EPIC-9,Scale data ingestion to support multi-project JQL queries,Epic
+FLOW-60,Story,Code Review,EPIC-8,Implement flow efficiency analytics in the dashboard,Epic
+FLOW-61,Story,Code Review,EPIC-8,Implement flow efficiency analytics in the dashboard,Epic
+FLOW-62,Story,Code Review,EPIC-8,Implement flow efficiency analytics in the dashboard,Epic
+FLOW-63,Bug,Code Review,EPIC-8,Implement flow efficiency analytics in the dashboard,Epic
+FLOW-64,Story,Code Review,EPIC-8,Implement flow efficiency analytics in the dashboard,Epic
+FLOW-65,Story,Code Review,EPIC-8,Implement flow efficiency analytics in the dashboard,Epic
+FLOW-66,Story,Code Review,EPIC-8,Implement flow efficiency analytics in the dashboard,Epic
+FLOW-67,Story,Code Review,EPIC-8,Implement flow efficiency analytics in the dashboard,Epic
+FLOW-68,Bug,Code Review,EPIC-8,Implement flow efficiency analytics in the dashboard,Epic
+FLOW-69,Story,Code Review,EPIC-8,Implement flow efficiency analytics in the dashboard,Epic
+FLOW-70,Story,Code Review,EPIC-7,Reduce average build and deployment pipeline time by 50%,Epic
+FLOW-71,Story,Code Review,EPIC-8,Implement flow efficiency analytics in the dashboard,Epic
+FLOW-72,Story,Code Review,EPIC-8,Implement flow efficiency analytics in the dashboard,Epic
+FLOW-73,Story,Code Review,EPIC-9,Scale data ingestion to support multi-project JQL queries,Epic
+FLOW-74,Story,Code Review,EPIC-8,Implement flow efficiency analytics in the dashboard,Epic
+FLOW-75,Story,Code Review,EPIC-8,Implement flow efficiency analytics in the dashboard,Epic
+FLOW-76,Story,Code Review,EPIC-10,Improve user onboarding experience for first-time coaches,Epic
+FLOW-77,Story,Code Review,EPIC-10,Improve user onboarding experience for first-time coaches,Epic
+FLOW-78,Story,Code Review,EPIC-10,Improve user onboarding experience for first-time coaches,Epic
+FLOW-79,Story,Code Review,EPIC-10,Improve user onboarding experience for first-time coaches,Epic
+FLOW-80,Story,Code Review,EPIC-11,Audit security permissions and restrict API token scopes,Epic
+FLOW-81,Bug,Code Review,EPIC-11,Audit security permissions and restrict API token scopes,Epic
+FLOW-82,Story,Code Review,EPIC-9,Scale data ingestion to support multi-project JQL queries,Epic
+FLOW-83,Story,Code Review,EPIC-10,Improve user onboarding experience for first-time coaches,Epic
+FLOW-84,Story,Code Review,EPIC-10,Improve user onboarding experience for first-time coaches,Epic
+FLOW-85,Story,Code Review,EPIC-10,Improve user onboarding experience for first-time coaches,Epic
+FLOW-86,Story,Code Review,EPIC-10,Improve user onboarding experience for first-time coaches,Epic
+FLOW-87,Story,Code Review,EPIC-9,Scale data ingestion to support multi-project JQL queries,Epic
+FLOW-88,Story,Code Review,EPIC-10,Improve user onboarding experience for first-time coaches,Epic
+FLOW-89,Story,Code Review,EPIC-9,Scale data ingestion to support multi-project JQL queries,Epic
+FLOW-90,Story,Code Review,EPIC-10,Improve user onboarding experience for first-time coaches,Epic
+FLOW-91,Story,Code Review,EPIC-10,Improve user onboarding experience for first-time coaches,Epic
+FLOW-92,Story,Code Review,EPIC-12,Add customizable widgets to the executive dashboard view,Epic
+FLOW-93,Story,Code Review,EPIC-11,Audit security permissions and restrict API token scopes,Epic
+FLOW-94,Story,Code Review,EPIC-10,Improve user onboarding experience for first-time coaches,Epic
+FLOW-95,Story,Code Review,EPIC-10,Improve user onboarding experience for first-time coaches,Epic
+FLOW-96,Bug,Code Review,EPIC-10,Improve user onboarding experience for first-time coaches,Epic
+FLOW-97,Bug,Code Review,EPIC-12,Add customizable widgets to the executive dashboard view,Epic
+FLOW-98,Story,Code Review,EPIC-13,Establish automated regression testing for chart rendering,Epic
+FLOW-99,Story,Code Review,EPIC-11,Audit security permissions and restrict API token scopes,Epic
+FLOW-100,Story,Code Review,EPIC-10,Improve user onboarding experience for first-time coaches,Epic
+FLOW-101,Story,Code Review,EPIC-10,Improve user onboarding experience for first-time coaches,Epic
+FLOW-102,Story,Code Review,EPIC-13,Establish automated regression testing for chart rendering,Epic
+FLOW-103,Bug,Code Review,EPIC-14,Reduce database query latency under heavy concurrent load,Epic
+FLOW-104,Story,Code Review,EPIC-13,Establish automated regression testing for chart rendering,Epic
+FLOW-105,Story,Code Review,EPIC-12,Add customizable widgets to the executive dashboard view,Epic
+FLOW-106,Story,Code Review,EPIC-13,Establish automated regression testing for chart rendering,Epic
+FLOW-107,Bug,Code Review,EPIC-13,Establish automated regression testing for chart rendering,Epic
+FLOW-108,Story,Implement,EPIC-15,Design and publish coaching playbook for Flow methodology,Epic
+FLOW-109,Story,Code Review,EPIC-15,Design and publish coaching playbook for Flow methodology,Epic
+FLOW-110,Story,Implement,EPIC-16,Upgrade frontend framework dependencies and libraries,Epic
+FLOW-111,Bug,Implement,EPIC-16,Upgrade frontend framework dependencies and libraries,Epic
+FLOW-112,Story,Implement,EPIC-15,Design and publish coaching playbook for Flow methodology,Epic
+FLOW-113,Story,Code Review,EPIC-15,Design and publish coaching playbook for Flow methodology,Epic
+FLOW-114,Story,Implement,EPIC-15,Design and publish coaching playbook for Flow methodology,Epic
+FLOW-115,Story,Code Review,EPIC-15,Design and publish coaching playbook for Flow methodology,Epic
+FLOW-116,Bug,Implement,EPIC-14,Reduce database query latency under heavy concurrent load,Epic
+FLOW-117,Bug,Implement,EPIC-16,Upgrade frontend framework dependencies and libraries,Epic
+FLOW-118,Story,Implement,EPIC-14,Reduce database query latency under heavy concurrent load,Epic
+FLOW-119,Bug,Implement,EPIC-16,Upgrade frontend framework dependencies and libraries,Epic
+FLOW-120,Bug,Implement,EPIC-16,Upgrade frontend framework dependencies and libraries,Epic
+FLOW-121,Story,Implement,EPIC-14,Reduce database query latency under heavy concurrent load,Epic
+FLOW-122,Story,Implement,EPIC-14,Reduce database query latency under heavy concurrent load,Epic
+FLOW-123,Story,Implement,EPIC-14,Reduce database query latency under heavy concurrent load,Epic
+FLOW-124,Bug,Implement,EPIC-16,Upgrade frontend framework dependencies and libraries,Epic
+FLOW-125,Story,Implement,EPIC-15,Design and publish coaching playbook for Flow methodology,Epic
+FLOW-126,Story,Implement,EPIC-16,Upgrade frontend framework dependencies and libraries,Epic
+FLOW-127,Story,Implement,EPIC-16,Upgrade frontend framework dependencies and libraries,Epic
+FLOW-128,Story,Implement,EPIC-14,Reduce database query latency under heavy concurrent load,Epic
+FLOW-129,Story,Implement,EPIC-14,Reduce database query latency under heavy concurrent load,Epic
+FLOW-130,Story,Implement,EPIC-14,Reduce database query latency under heavy concurrent load,Epic
+FLOW-131,Story,Implement,EPIC-17,Implement role-based access control for enterprise clients,Epic
+FLOW-132,Bug,Implement,EPIC-15,Design and publish coaching playbook for Flow methodology,Epic
+FLOW-133,Bug,Implement,EPIC-16,Upgrade frontend framework dependencies and libraries,Epic
+FLOW-134,Story,Implement,EPIC-15,Design and publish coaching playbook for Flow methodology,Epic
+FLOW-135,Story,Implement,EPIC-16,Upgrade frontend framework dependencies and libraries,Epic
+FLOW-136,Bug,Implement,EPIC-15,Design and publish coaching playbook for Flow methodology,Epic
+FLOW-137,Story,Implement,EPIC-18,Integrate slack notification for flow metrics alerts (Phase 3),Epic
+FLOW-138,Story,Implement,EPIC-18,Integrate slack notification for flow metrics alerts (Phase 3),Epic
+FLOW-139,Story,Implement,EPIC-17,Implement role-based access control for enterprise clients,Epic
+FLOW-140,Bug,Implement,EPIC-18,Integrate slack notification for flow metrics alerts (Phase 3),Epic
+FLOW-141,Bug,Implement,EPIC-18,Integrate slack notification for flow metrics alerts (Phase 3),Epic
+FLOW-142,Story,Implement,EPIC-18,Integrate slack notification for flow metrics alerts (Phase 3),Epic
+FLOW-143,Story,Implement,EPIC-18,Integrate slack notification for flow metrics alerts (Phase 3),Epic
+FLOW-144,Story,Implement,EPIC-18,Integrate slack notification for flow metrics alerts (Phase 3),Epic
+FLOW-145,Story,Implement,EPIC-16,Upgrade frontend framework dependencies and libraries,Epic
+FLOW-146,Story,Implement,EPIC-18,Integrate slack notification for flow metrics alerts (Phase 3),Epic
+FLOW-147,Bug,Implement,EPIC-16,Upgrade frontend framework dependencies and libraries,Epic
+FLOW-148,Story,Implement,EPIC-18,Integrate slack notification for flow metrics alerts (Phase 3),Epic
+FLOW-149,Story,Implement,EPIC-16,Upgrade frontend framework dependencies and libraries,Epic
+FLOW-150,Story,Open,EPIC-16,Upgrade frontend framework dependencies and libraries,Epic
+FLOW-151,Story,Open,EPIC-16,Upgrade frontend framework dependencies and libraries,Epic
+FLOW-152,Story,Open,EPIC-16,Upgrade frontend framework dependencies and libraries,Epic
+FLOW-153,Story,Open,EPIC-18,Integrate slack notification for flow metrics alerts (Phase 3),Epic
+FLOW-154,Bug,Open,EPIC-16,Upgrade frontend framework dependencies and libraries,Epic
+FLOW-155,Story,Open,EPIC-18,Integrate slack notification for flow metrics alerts (Phase 3),Epic
+FLOW-156,Story,Open,EPIC-16,Upgrade frontend framework dependencies and libraries,Epic
+FLOW-157,Bug,Open,EPIC-16,Upgrade frontend framework dependencies and libraries,Epic
+FLOW-158,Story,Open,EPIC-19,Reduce average build and deployment pipeline time by 50% (Phase 3),Epic
+FLOW-159,Story,Open,EPIC-19,Reduce average build and deployment pipeline time by 50% (Phase 3),Epic
+FLOW-160,Story,Open,EPIC-18,Integrate slack notification for flow metrics alerts (Phase 3),Epic
+FLOW-161,Story,Open,EPIC-19,Reduce average build and deployment pipeline time by 50% (Phase 3),Epic
+FLOW-162,Story,Open,EPIC-19,Reduce average build and deployment pipeline time by 50% (Phase 3),Epic
+FLOW-163,Story,Open,EPIC-18,Integrate slack notification for flow metrics alerts (Phase 3),Epic
+FLOW-164,Story,Open,EPIC-19,Reduce average build and deployment pipeline time by 50% (Phase 3),Epic
+FLOW-165,Bug,Open,EPIC-18,Integrate slack notification for flow metrics alerts (Phase 3),Epic
+FLOW-166,Bug,Open,EPIC-20,Implement flow efficiency analytics in the dashboard (Phase 3),Epic
+FLOW-167,Story,Open,EPIC-20,Implement flow efficiency analytics in the dashboard (Phase 3),Epic
+FLOW-168,Story,Open,EPIC-18,Integrate slack notification for flow metrics alerts (Phase 3),Epic
+FLOW-169,Story,Open,EPIC-17,Implement role-based access control for enterprise clients,Epic
+FLOW-170,Story,Open,EPIC-20,Implement flow efficiency analytics in the dashboard (Phase 3),Epic
+FLOW-171,Story,Open,EPIC-20,Implement flow efficiency analytics in the dashboard (Phase 3),Epic
+FLOW-172,Story,Open,EPIC-20,Implement flow efficiency analytics in the dashboard (Phase 3),Epic
+FLOW-173,Bug,Open,EPIC-18,Integrate slack notification for flow metrics alerts (Phase 3),Epic
+FLOW-174,Story,Open,EPIC-20,Implement flow efficiency analytics in the dashboard (Phase 3),Epic
+FLOW-175,Story,Open,EPIC-19,Reduce average build and deployment pipeline time by 50% (Phase 3),Epic
+FLOW-176,Story,Open,EPIC-18,Integrate slack notification for flow metrics alerts (Phase 3),Epic
+FLOW-177,Story,Open,EPIC-20,Implement flow efficiency analytics in the dashboard (Phase 3),Epic
+FLOW-178,Story,Open,EPIC-19,Reduce average build and deployment pipeline time by 50% (Phase 3),Epic
+FLOW-179,Story,Open,EPIC-18,Integrate slack notification for flow metrics alerts (Phase 3),Epic
+FLOW-180,Story,Open,EPIC-20,Implement flow efficiency analytics in the dashboard (Phase 3),Epic
+FLOW-181,Story,Open,EPIC-18,Integrate slack notification for flow metrics alerts (Phase 3),Epic
+FLOW-182,Bug,Open,EPIC-18,Integrate slack notification for flow metrics alerts (Phase 3),Epic
+FLOW-183,Story,Open,EPIC-20,Implement flow efficiency analytics in the dashboard (Phase 3),Epic
+FLOW-184,Story,Open,EPIC-20,Implement flow efficiency analytics in the dashboard (Phase 3),Epic
+FLOW-185,Story,Open,EPIC-20,Implement flow efficiency analytics in the dashboard (Phase 3),Epic
+FLOW-186,Story,Open,EPIC-20,Implement flow efficiency analytics in the dashboard (Phase 3),Epic
+FLOW-187,Story,Open,EPIC-20,Implement flow efficiency analytics in the dashboard (Phase 3),Epic
+FLOW-188,Story,Open,EPIC-19,Reduce average build and deployment pipeline time by 50% (Phase 3),Epic
+FLOW-189,Story,Open,EPIC-20,Implement flow efficiency analytics in the dashboard (Phase 3),Epic
+FLOW-190,Story,Open,EPIC-20,Implement flow efficiency analytics in the dashboard (Phase 3),Epic
+FLOW-191,Story,Open,EPIC-20,Implement flow efficiency analytics in the dashboard (Phase 3),Epic
+FLOW-192,Story,Open,EPIC-20,Implement flow efficiency analytics in the dashboard (Phase 3),Epic
+FLOW-193,Story,Open,EPIC-20,Implement flow efficiency analytics in the dashboard (Phase 3),Epic
+FLOW-194,Story,Open,EPIC-20,Implement flow efficiency analytics in the dashboard (Phase 3),Epic
+FLOW-195,Story,Open,EPIC-19,Reduce average build and deployment pipeline time by 50% (Phase 3),Epic
+FLOW-196,Bug,Open,EPIC-20,Implement flow efficiency analytics in the dashboard (Phase 3),Epic
+FLOW-REG-1,Bug,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-REG-2,Bug,Done,EPIC-1,Improve coach capability to guide teams by visualizing flow metrics,Epic
+FLOW-REG-3,Bug,Done,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-REG-4,Bug,Done,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-REG-5,Bug,Done,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-REG-6,Bug,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-REG-7,Bug,Done,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-REG-8,Bug,Done,EPIC-2,Build Cumulative Flow Diagram CFD chart component,Epic
+FLOW-REG-9,Bug,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-REG-10,Bug,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-REG-11,Bug,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-REG-12,Bug,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-REG-13,Bug,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-REG-14,Bug,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-REG-15,Bug,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-REG-16,Bug,Done,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-REG-17,Bug,Done,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-REG-18,Bug,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-REG-19,Bug,Done,EPIC-4,FY26Q2 | Upgrade system dependencies and dev environment,Epic
+FLOW-REG-20,Bug,Done,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic
+FLOW-REG-21,Bug,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-REG-22,Bug,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-REG-23,Bug,Done,EPIC-6,Integrate slack notification for flow metrics alerts,Epic
+FLOW-REG-24,Bug,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-REG-25,Bug,Done,EPIC-3,Implement Sprint Comet Chart with Tetris layout,Epic
+FLOW-REG-26,Bug,Ready for release,EPIC-5,Increase NPS satisfaction of coaches by 20% through dashboard insights,Epic

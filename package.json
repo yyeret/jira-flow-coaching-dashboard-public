@@ -1,0 +1,46 @@
+{
+  "name": "jira-flow-coaching-dashboard",
+  "version": "1.0.0",
+  "description": "This dashboard is designed to help teams visualize their flow metrics, following Yuval Yeret's Flow Coaching methodology. It emphasizes descaling, focusing on flow over utilization, and prioritizing finishing over starting.",
+  "main": "flow_metrics.js",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --testMatch \"**/*.test.js\" --coverage && pytest --cov=. --cov-report=term-missing",
+    "lint": "eslint . && prettier --check eslint.config.js jest.config.js flow_metrics.js js/ tests/ && ruff check . && ruff format --check .",
+    "lint:fix": "eslint . --fix && prettier --write eslint.config.js jest.config.js flow_metrics.js js/ tests/ && ruff check --fix . && ruff format .",
+    "prestart": "npm run build",
+    "start": "serve dist --listen tcp://127.0.0.1:3000 --no-clipboard",
+    "prepare": "husky",
+    "build": "node scripts/build.cjs",
+    "pretest": "npm run build",
+    "audit:release": "python3 scripts/check_public_tree.py"
+  },
+  "keywords": [],
+  "author": "Yuval Yeret",
+  "license": "ISC",
+  "dependencies": {
+    "papaparse": "^5.5.3",
+    "chart.js": "4.5.1",
+    "chartjs-adapter-date-fns": "3.0.0",
+    "date-fns": "4.1.0",
+    "localforage": "1.10.0"
+  },
+  "devDependencies": {
+    "eslint": "^10.12.0",
+    "eslint-config-prettier": "^10.1.8",
+    "husky": "^9.1.7",
+    "jest": "^30.4.2",
+    "prettier": "^3.9.10",
+    "playwright": "^1.60.0",
+    "puppeteer": "^25.1.0",
+    "serve": "14.2.6"
+  },
+  "private": true,
+  "overrides": {
+    "@istanbuljs/load-nyc-config": {
+      "js-yaml": "^4.1.1"
+    },
+    "serve": {
+      "compression": "^1.8.2"
+    }
+  }
+}

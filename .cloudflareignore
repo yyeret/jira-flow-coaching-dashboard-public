@@ -1,0 +1,15 @@
+node_modules/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.coverage/
+coverage/
+.git/
+.github/
+.claude/
+.husky/
+.playwright-cli/
+*.py
+test*.js
+batch_results_*.json
+plans/

@@ -1,0 +1,178 @@
+Issue Key,Issue Type,Current Status,Parent Key,Parent Summary,Parent Type
+FLOW-1,Story,Done,FEAT-1,Natural Language chatbot for level-1 triage,Feature
+FLOW-2,Story,Done,FEAT-1,Natural Language chatbot for level-1 triage,Feature
+FLOW-3,Story,Done,FEAT-1,Natural Language chatbot for level-1 triage,Feature
+FLOW-4,Bug,Done,FEAT-1,Natural Language chatbot for level-1 triage,Feature
+FLOW-5,Story,Done,FEAT-2,Sentiment analysis integration for ticket escalation,Feature
+FLOW-6,Story,Done,FEAT-2,Sentiment analysis integration for ticket escalation,Feature
+FLOW-7,Story,Done,FEAT-2,Sentiment analysis integration for ticket escalation,Feature
+FLOW-8,Bug,Done,FEAT-2,Sentiment analysis integration for ticket escalation,Feature
+FLOW-9,Bug,Done,FEAT-2,Sentiment analysis integration for ticket escalation,Feature
+FLOW-10,Story,Done,FEAT-1,Natural Language chatbot for level-1 triage,Feature
+FLOW-11,Story,Done,FEAT-2,Sentiment analysis integration for ticket escalation,Feature
+FLOW-12,Bug,Done,FEAT-3,Automated knowledge base article generator,Feature
+FLOW-13,Story,Done,FEAT-2,Sentiment analysis integration for ticket escalation,Feature
+FLOW-14,Bug,Done,FEAT-2,Sentiment analysis integration for ticket escalation,Feature
+FLOW-15,Story,Done,FEAT-2,Sentiment analysis integration for ticket escalation,Feature
+FLOW-16,Story,Done,FEAT-3,Automated knowledge base article generator,Feature
+FLOW-17,Story,Done,FEAT-2,Sentiment analysis integration for ticket escalation,Feature
+FLOW-18,Story,Done,FEAT-3,Automated knowledge base article generator,Feature
+FLOW-19,Story,Done,FEAT-4,Voice-to-text translation service for call center,Feature
+FLOW-20,Story,Done,FEAT-3,Automated knowledge base article generator,Feature
+FLOW-21,Story,Done,FEAT-3,Automated knowledge base article generator,Feature
+FLOW-22,Bug,Done,FEAT-3,Automated knowledge base article generator,Feature
+FLOW-23,Story,Done,FEAT-3,Automated knowledge base article generator,Feature
+FLOW-24,Story,Done,FEAT-3,Automated knowledge base article generator,Feature
+FLOW-25,Story,Done,FEAT-4,Voice-to-text translation service for call center,Feature
+FLOW-26,Bug,Done,FEAT-3,Automated knowledge base article generator,Feature
+FLOW-27,Story,Done,FEAT-3,Automated knowledge base article generator,Feature
+FLOW-28,Story,Done,FEAT-4,Voice-to-text translation service for call center,Feature
+FLOW-29,Story,Done,FEAT-5,LLM prompt management UI template,Feature
+FLOW-30,Bug,Done,FEAT-4,Voice-to-text translation service for call center,Feature
+FLOW-31,Story,Done,FEAT-4,Voice-to-text translation service for call center,Feature
+FLOW-32,Story,Done,FEAT-4,Voice-to-text translation service for call center,Feature
+FLOW-33,Story,Done,FEAT-4,Voice-to-text translation service for call center,Feature
+FLOW-34,Story,Done,FEAT-5,LLM prompt management UI template,Feature
+FLOW-35,Bug,Done,FEAT-5,LLM prompt management UI template,Feature
+FLOW-36,Story,Done,FEAT-5,LLM prompt management UI template,Feature
+FLOW-37,Bug,Done,FEAT-6,Image generation pipeline integration,Feature
+FLOW-38,Story,Done,FEAT-6,Image generation pipeline integration,Feature
+FLOW-39,Story,Done,FEAT-5,LLM prompt management UI template,Feature
+FLOW-40,Story,Done,FEAT-6,Image generation pipeline integration,Feature
+FLOW-41,Story,Done,FEAT-5,LLM prompt management UI template,Feature
+FLOW-42,Bug,Done,FEAT-7,Bulk copy generation API endpoints,Feature
+FLOW-43,Bug,Done,FEAT-6,Image generation pipeline integration,Feature
+FLOW-44,Story,Done,FEAT-5,LLM prompt management UI template,Feature
+FLOW-45,Story,Done,FEAT-7,Bulk copy generation API endpoints,Feature
+FLOW-46,Bug,Done,FEAT-6,Image generation pipeline integration,Feature
+FLOW-47,Story,Done,FEAT-7,Bulk copy generation API endpoints,Feature
+FLOW-48,Story,Done,FEAT-7,Bulk copy generation API endpoints,Feature
+FLOW-49,Story,Done,FEAT-7,Bulk copy generation API endpoints,Feature
+FLOW-50,Story,Done,FEAT-7,Bulk copy generation API endpoints,Feature
+FLOW-51,Bug,Done,FEAT-7,Bulk copy generation API endpoints,Feature
+FLOW-52,Story,Done,FEAT-8,A/B test variation generator,Feature
+FLOW-53,Story,Done,FEAT-7,Bulk copy generation API endpoints,Feature
+FLOW-54,Story,Done,FEAT-8,A/B test variation generator,Feature
+FLOW-55,Story,Done,FEAT-8,A/B test variation generator,Feature
+FLOW-56,Story,Done,FEAT-7,Bulk copy generation API endpoints,Feature
+FLOW-57,Story,Done,FEAT-8,A/B test variation generator,Feature
+FLOW-58,Story,Done,FEAT-7,Bulk copy generation API endpoints,Feature
+FLOW-59,Story,Done,FEAT-7,Bulk copy generation API endpoints,Feature
+FLOW-60,Story,Done,FEAT-7,Bulk copy generation API endpoints,Feature
+FLOW-61,Bug,Done,FEAT-8,A/B test variation generator,Feature
+FLOW-62,Story,Done,FEAT-9,IoT sensor data ingestion stream,Feature
+FLOW-63,Story,Done,FEAT-9,IoT sensor data ingestion stream,Feature
+FLOW-64,Bug,Done,FEAT-9,IoT sensor data ingestion stream,Feature
+FLOW-65,Story,Done,FEAT-8,A/B test variation generator,Feature
+FLOW-66,Story,Done,FEAT-9,IoT sensor data ingestion stream,Feature
+FLOW-67,Story,Done,FEAT-9,IoT sensor data ingestion stream,Feature
+FLOW-68,Story,Done,FEAT-9,IoT sensor data ingestion stream,Feature
+FLOW-69,Story,Done,FEAT-9,IoT sensor data ingestion stream,Feature
+FLOW-70,Story,Done,FEAT-8,A/B test variation generator,Feature
+FLOW-71,Bug,Done,FEAT-10,Anomaly detection model training pipeline,Feature
+FLOW-72,Bug,Done,FEAT-9,IoT sensor data ingestion stream,Feature
+FLOW-73,Story,Done,FEAT-9,IoT sensor data ingestion stream,Feature
+FLOW-74,Story,Done,FEAT-10,Anomaly detection model training pipeline,Feature
+FLOW-75,Story,Done,FEAT-10,Anomaly detection model training pipeline,Feature
+FLOW-76,Story,Done,FEAT-9,IoT sensor data ingestion stream,Feature
+FLOW-77,Story,Done,FEAT-10,Anomaly detection model training pipeline,Feature
+FLOW-78,Story,Done,FEAT-9,IoT sensor data ingestion stream,Feature
+FLOW-79,Bug,Done,FEAT-10,Anomaly detection model training pipeline,Feature
+FLOW-80,Story,Done,FEAT-9,IoT sensor data ingestion stream,Feature
+FLOW-81,Bug,Done,FEAT-10,Anomaly detection model training pipeline,Feature
+FLOW-82,Story,Done,FEAT-10,Anomaly detection model training pipeline,Feature
+FLOW-83,Story,Done,FEAT-10,Anomaly detection model training pipeline,Feature
+FLOW-84,Story,Done,FEAT-11,Predictive failure alert dashboard,Feature
+FLOW-85,Story,Done,FEAT-10,Anomaly detection model training pipeline,Feature
+FLOW-86,Story,Done,FEAT-12,Maintenance scheduling optimization algorithm,Feature
+FLOW-87,Story,Done,FEAT-10,Anomaly detection model training pipeline,Feature
+FLOW-88,Story,Done,FEAT-12,Maintenance scheduling optimization algorithm,Feature
+FLOW-89,Bug,Done,FEAT-10,Anomaly detection model training pipeline,Feature
+FLOW-90,Bug,Done,FEAT-10,Anomaly detection model training pipeline,Feature
+FLOW-91,Story,Done,FEAT-11,Predictive failure alert dashboard,Feature
+FLOW-92,Bug,Done,FEAT-11,Predictive failure alert dashboard,Feature
+FLOW-93,Story,Done,FEAT-11,Predictive failure alert dashboard,Feature
+FLOW-94,Story,Done,FEAT-12,Maintenance scheduling optimization algorithm,Feature
+FLOW-95,Story,Done,FEAT-11,Predictive failure alert dashboard,Feature
+FLOW-96,Story,Done,FEAT-11,Predictive failure alert dashboard,Feature
+FLOW-97,Story,Done,FEAT-11,Predictive failure alert dashboard,Feature
+FLOW-98,Story,Done,FEAT-12,Maintenance scheduling optimization algorithm,Feature
+FLOW-99,Story,Done,FEAT-11,Predictive failure alert dashboard,Feature
+FLOW-100,Story,Done,FEAT-13,Procure and rack new Nvidia H100 servers,Feature
+FLOW-101,Story,Done,FEAT-13,Procure and rack new Nvidia H100 servers,Feature
+FLOW-102,Bug,Done,FEAT-12,Maintenance scheduling optimization algorithm,Feature
+FLOW-103,Story,Done,FEAT-12,Maintenance scheduling optimization algorithm,Feature
+FLOW-104,Story,Done,FEAT-14,Configure Kubernetes GPU node pools,Feature
+FLOW-105,Bug,Done,FEAT-12,Maintenance scheduling optimization algorithm,Feature
+FLOW-106,Bug,Done,FEAT-14,Configure Kubernetes GPU node pools,Feature
+FLOW-107,Story,Done,FEAT-13,Procure and rack new Nvidia H100 servers,Feature
+FLOW-108,Story,Done,FEAT-14,Configure Kubernetes GPU node pools,Feature
+FLOW-109,Bug,Done,FEAT-14,Configure Kubernetes GPU node pools,Feature
+FLOW-110,Bug,Done,FEAT-12,Maintenance scheduling optimization algorithm,Feature
+FLOW-111,Story,Done,FEAT-13,Procure and rack new Nvidia H100 servers,Feature
+FLOW-112,Story,Done,FEAT-14,Configure Kubernetes GPU node pools,Feature
+FLOW-113,Story,Done,FEAT-14,Configure Kubernetes GPU node pools,Feature
+FLOW-114,Story,Done,FEAT-14,Configure Kubernetes GPU node pools,Feature
+FLOW-115,Story,Done,FEAT-15,Update PyTorch distributed training libraries,Feature
+FLOW-116,Story,Done,FEAT-15,Update PyTorch distributed training libraries,Feature
+FLOW-117,Story,Done,FEAT-15,Update PyTorch distributed training libraries,Feature
+FLOW-118,Bug,Done,FEAT-15,Update PyTorch distributed training libraries,Feature
+FLOW-119,Story,Done,FEAT-14,Configure Kubernetes GPU node pools,Feature
+FLOW-120,Story,Done,FEAT-15,Update PyTorch distributed training libraries,Feature
+FLOW-121,Story,Done,FEAT-16,Network topology reconfiguration for high bandwidth,Feature
+FLOW-122,Story,Done,FEAT-15,Update PyTorch distributed training libraries,Feature
+FLOW-123,Story,Done,FEAT-16,Network topology reconfiguration for high bandwidth,Feature
+FLOW-124,Story,Done,FEAT-16,Network topology reconfiguration for high bandwidth,Feature
+FLOW-125,Story,Done,FEAT-16,Network topology reconfiguration for high bandwidth,Feature
+FLOW-126,Story,Done,FEAT-16,Network topology reconfiguration for high bandwidth,Feature
+FLOW-127,Bug,Done,FEAT-16,Network topology reconfiguration for high bandwidth,Feature
+FLOW-128,Story,Done,FEAT-15,Update PyTorch distributed training libraries,Feature
+FLOW-129,Bug,Done,FEAT-16,Network topology reconfiguration for high bandwidth,Feature
+FLOW-130,Story,Done,FEAT-16,Network topology reconfiguration for high bandwidth,Feature
+FLOW-131,Story,Done,FEAT-17,Real-time transaction scoring microservice,Feature
+FLOW-132,Story,Done,FEAT-17,Real-time transaction scoring microservice,Feature
+FLOW-133,Bug,Done,FEAT-17,Real-time transaction scoring microservice,Feature
+FLOW-134,Story,Done,FEAT-17,Real-time transaction scoring microservice,Feature
+FLOW-135,Story,Done,FEAT-18,Graph neural network for entity resolution,Feature
+FLOW-136,Story,Done,FEAT-19,Fraud analyst human-in-the-loop review queue,Feature
+FLOW-137,Story,Done,FEAT-19,Fraud analyst human-in-the-loop review queue,Feature
+FLOW-138,Story,Done,FEAT-19,Fraud analyst human-in-the-loop review queue,Feature
+FLOW-139,Story,Done,FEAT-18,Graph neural network for entity resolution,Feature
+FLOW-140,Bug,Done,FEAT-18,Graph neural network for entity resolution,Feature
+FLOW-141,Story,Done,FEAT-18,Graph neural network for entity resolution,Feature
+FLOW-142,Story,Done,FEAT-19,Fraud analyst human-in-the-loop review queue,Feature
+FLOW-143,Bug,Done,FEAT-18,Graph neural network for entity resolution,Feature
+FLOW-144,Story,Done,FEAT-19,Fraud analyst human-in-the-loop review queue,Feature
+FLOW-145,Story,Done,FEAT-19,Fraud analyst human-in-the-loop review queue,Feature
+FLOW-146,Bug,Done,FEAT-18,Graph neural network for entity resolution,Feature
+FLOW-147,Story,Done,FEAT-18,Graph neural network for entity resolution,Feature
+FLOW-148,Story,Done,FEAT-20,Automated account freezing protocol,Feature
+FLOW-149,Story,Done,FEAT-19,Fraud analyst human-in-the-loop review queue,Feature
+FLOW-150,Story,Done,FEAT-20,Automated account freezing protocol,Feature
+FLOW-151,Story,Done,FEAT-19,Fraud analyst human-in-the-loop review queue,Feature
+FLOW-152,Story,Done,FEAT-19,Fraud analyst human-in-the-loop review queue,Feature
+FLOW-153,Story,Done,FEAT-19,Fraud analyst human-in-the-loop review queue,Feature
+FLOW-154,Bug,Done,FEAT-20,Automated account freezing protocol,Feature
+FLOW-155,Story,Done,FEAT-20,Automated account freezing protocol,Feature
+FLOW-156,Story,Done,FEAT-20,Automated account freezing protocol,Feature
+FLOW-157,Story,Done,FEAT-20,Automated account freezing protocol,Feature
+FEAT-1,Feature,DONE,EPIC-1,AI-Powered Customer Support Automation,Epic
+FEAT-2,Feature,DONE,EPIC-1,AI-Powered Customer Support Automation,Epic
+FEAT-3,Feature,DONE,EPIC-1,AI-Powered Customer Support Automation,Epic
+FEAT-4,Feature,DONE,EPIC-1,AI-Powered Customer Support Automation,Epic
+FEAT-5,Feature,DONE,EPIC-2,GenAI Marketing Content Generation Platform,Epic
+FEAT-6,Feature,DONE,EPIC-2,GenAI Marketing Content Generation Platform,Epic
+FEAT-7,Feature,DONE,EPIC-2,GenAI Marketing Content Generation Platform,Epic
+FEAT-8,Feature,DONE,EPIC-2,GenAI Marketing Content Generation Platform,Epic
+FEAT-9,Feature,DONE,EPIC-3,Predictive Maintenance AI Models for Manufacturing,Epic
+FEAT-10,Feature,DONE,EPIC-3,Predictive Maintenance AI Models for Manufacturing,Epic
+FEAT-11,Feature,DONE,EPIC-3,Predictive Maintenance AI Models for Manufacturing,Epic
+FEAT-12,Feature,DONE,EPIC-3,Predictive Maintenance AI Models for Manufacturing,Epic
+FEAT-13,Feature,DONE,EPIC-4,Upgrade GPU Cluster Infrastructure,Epic
+FEAT-14,Feature,DONE,EPIC-4,Upgrade GPU Cluster Infrastructure,Epic
+FEAT-15,Feature,DONE,EPIC-4,Upgrade GPU Cluster Infrastructure,Epic
+FEAT-16,Feature,DONE,EPIC-4,Upgrade GPU Cluster Infrastructure,Epic
+FEAT-17,Feature,DONE,EPIC-5,AI-Driven Fraud Detection Engine,Epic
+FEAT-18,Feature,DONE,EPIC-5,AI-Driven Fraud Detection Engine,Epic
+FEAT-19,Feature,DONE,EPIC-5,AI-Driven Fraud Detection Engine,Epic
+FEAT-20,Feature,DONE,EPIC-5,AI-Driven Fraud Detection Engine,Epic

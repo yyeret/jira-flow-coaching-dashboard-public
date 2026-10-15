@@ -1,0 +1,367 @@
+Issue Key,Date,Action,Reason,Comment
+FLOW-2,2026-04-23 01:48:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-2,2026-04-25 01:48:00,Unflagged,Tech: PR / Code Review,
+FLOW-2,2026-04-25 04:12:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-2,2026-04-29 01:48:00,Unflagged,Tech: PR / Code Review,
+FLOW-3,2026-04-21 18:36:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-3,2026-04-23 01:48:00,Unflagged,Tech: PR / Code Review,
+FLOW-5,2026-04-23 04:12:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-5,2026-05-01 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-6,2026-04-13 13:48:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-6,2026-04-14 04:12:00,Unflagged,Product: Missing Specs & AC,
+FLOW-7,2026-04-24 11:24:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-7,2026-05-03 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-7,2026-05-03 11:24:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-7,2026-05-05 21:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-8,2026-04-13 13:48:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-8,2026-04-14 04:12:00,Unflagged,Product: Missing Specs & AC,
+FLOW-9,2026-04-22 11:24:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-9,2026-04-23 01:48:00,Unflagged,Tech: PR / Code Review,
+FLOW-10,2026-04-17 13:48:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-10,2026-04-18 04:12:00,Unflagged,Product: Missing Specs & AC,
+FLOW-10,2026-04-22 11:24:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-10,2026-04-25 01:48:00,Unflagged,Tech: PR / Code Review,
+FLOW-10,2026-04-26 16:12:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-10,2026-04-28 16:12:00,Unflagged,Tech: PR / Code Review,
+FLOW-11,2026-04-21 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-11,2026-04-22 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-11,2026-04-23 18:36:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-11,2026-05-02 18:36:00,Unflagged,Tech: PR / Code Review,
+FLOW-11,2026-05-04 09:00:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-11,2026-05-05 11:24:00,Unflagged,Tech: PR / Code Review,
+FLOW-12,2026-04-21 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-12,2026-04-22 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-12,2026-04-25 04:12:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-12,2026-05-09 23:24:00,Unflagged,Tech: PR / Code Review,
+FLOW-13,2026-04-26 06:36:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-13,2026-05-13 01:48:00,Unflagged,Tech: PR / Code Review,
+FLOW-14,2026-04-23 04:12:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-14,2026-04-29 04:12:00,Unflagged,Tech: PR / Code Review,
+FLOW-14,2026-04-30 18:36:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-14,2026-04-30 23:24:00,Unflagged,Tech: PR / Code Review,
+FLOW-15,2026-04-26 23:24:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-15,2026-05-13 01:48:00,Unflagged,Tech: PR / Code Review,
+FLOW-15,2026-05-14 16:12:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-15,2026-05-15 01:48:00,Unflagged,Tech: PR / Code Review,
+FLOW-16,2026-04-24 23:24:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-16,2026-05-06 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-16,2026-05-07 11:24:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-16,2026-05-07 18:36:00,Unflagged,Tech: PR / Code Review,
+FLOW-16,2026-05-07 23:24:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-16,2026-05-09 11:24:00,Unflagged,Tech: PR / Code Review,
+FLOW-17,2026-04-28 11:24:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-17,2026-05-16 16:12:00,Unflagged,Tech: PR / Code Review,
+FLOW-17,2026-05-16 21:00:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-17,2026-05-17 11:24:00,Unflagged,Tech: PR / Code Review,
+FLOW-17,2026-05-18 06:36:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-17,2026-05-18 21:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-18,2026-04-23 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-18,2026-04-24 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-18,2026-04-25 16:12:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-18,2026-05-10 04:12:00,Unflagged,Tech: PR / Code Review,
+FLOW-18,2026-05-11 01:48:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-18,2026-05-11 23:24:00,Unflagged,Tech: PR / Code Review,
+FLOW-19,2026-04-25 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-19,2026-04-26 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-19,2026-05-03 01:48:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-19,2026-05-21 21:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-20,2026-04-25 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-20,2026-04-26 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-20,2026-04-27 21:00:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-20,2026-05-15 11:24:00,Unflagged,Tech: PR / Code Review,
+FLOW-21,2026-05-09 06:36:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-21,2026-06-09 16:12:00,Unflagged,Tech: PR / Code Review,
+FLOW-22,2026-04-23 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-22,2026-04-24 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-22,2026-05-01 06:36:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-22,2026-05-20 06:36:00,Unflagged,Tech: PR / Code Review,
+FLOW-23,2026-05-04 09:00:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-23,2026-05-24 11:24:00,Unflagged,Tech: PR / Code Review,
+FLOW-24,2026-05-04 21:00:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-24,2026-05-25 16:12:00,Unflagged,Tech: PR / Code Review,
+FLOW-24,2026-05-25 23:24:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-24,2026-05-26 11:24:00,Unflagged,Tech: PR / Code Review,
+FLOW-25,2026-04-29 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-25,2026-04-30 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-25,2026-05-05 01:48:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-25,2026-05-27 23:24:00,Unflagged,Tech: PR / Code Review,
+FLOW-26,2026-05-01 04:12:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-26,2026-05-19 21:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-27,2026-04-29 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-27,2026-04-30 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-27,2026-05-05 13:48:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-27,2026-05-28 04:12:00,Unflagged,Tech: PR / Code Review,
+FLOW-27,2026-05-29 18:36:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-27,2026-05-29 23:24:00,Unflagged,Tech: PR / Code Review,
+FLOW-28,2026-04-27 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-28,2026-04-28 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-28,2026-05-03 04:12:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-28,2026-05-22 06:36:00,Unflagged,Tech: PR / Code Review,
+FLOW-28,2026-05-23 16:12:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-28,2026-05-23 21:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-29,2026-05-07 01:48:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-29,2026-05-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-30,2026-04-27 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-30,2026-04-28 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-30,2026-05-07 16:12:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-30,2026-05-31 18:36:00,Unflagged,Tech: PR / Code Review,
+FLOW-31,2026-05-08 01:48:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-31,2026-06-01 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-32,2026-05-08 18:36:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-32,2026-06-07 06:36:00,Unflagged,Tech: PR / Code Review,
+FLOW-32,2026-06-08 11:24:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-32,2026-06-08 21:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-33,2026-05-01 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-33,2026-05-02 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-33,2026-05-09 16:12:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-33,2026-06-10 11:24:00,Unflagged,Tech: PR / Code Review,
+FLOW-33,2026-06-11 06:36:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-33,2026-06-11 16:12:00,Unflagged,Tech: PR / Code Review,
+FLOW-33,2026-06-12 01:48:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-33,2026-06-13 06:36:00,Unflagged,Tech: PR / Code Review,
+FLOW-33,2026-06-13 18:36:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-33,2026-06-14 01:48:00,Unflagged,Tech: PR / Code Review,
+FLOW-34,2026-05-01 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-34,2026-05-02 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-34,2026-05-08 16:12:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-34,2026-06-02 18:36:00,Unflagged,Tech: PR / Code Review,
+FLOW-34,2026-06-03 04:12:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-34,2026-06-03 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-34,2026-06-04 21:00:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-34,2026-06-07 04:12:00,Unflagged,Tech: PR / Code Review,
+FLOW-35,2026-05-14 18:36:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-35,2026-06-15 18:36:00,Unflagged,Tech: PR / Code Review,
+FLOW-35,2026-06-16 04:12:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-35,2026-06-16 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-36,2026-05-03 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-36,2026-05-04 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-36,2026-05-14 21:00:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-36,2026-06-17 23:24:00,Unflagged,Tech: PR / Code Review,
+FLOW-37,2026-05-03 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-37,2026-05-04 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-37,2026-05-15 09:00:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-37,2026-06-19 23:24:00,Unflagged,Tech: PR / Code Review,
+FLOW-38,2026-05-12 09:00:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-38,2026-06-14 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-39,2026-05-15 01:48:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-39,2026-06-18 04:12:00,Unflagged,Tech: PR / Code Review,
+FLOW-40,2026-05-05 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-40,2026-05-06 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-40,2026-05-15 11:24:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-40,2026-06-20 04:12:00,Unflagged,Tech: PR / Code Review,
+FLOW-41,2026-05-05 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-41,2026-05-06 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-41,2026-05-20 23:24:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-41,2026-06-25 23:24:00,Unflagged,Tech: PR / Code Review,
+FLOW-42,2026-05-17 01:48:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-42,2026-06-21 23:24:00,Unflagged,Tech: PR / Code Review,
+FLOW-43,2026-05-25 04:12:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-43,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-44,2026-05-17 09:00:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-44,2026-06-22 04:12:00,Unflagged,Tech: PR / Code Review,
+FLOW-45,2026-05-07 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-45,2026-05-08 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-45,2026-05-18 04:12:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-45,2026-06-23 23:24:00,Unflagged,Tech: PR / Code Review,
+FLOW-46,2026-05-29 18:36:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-46,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-47,2026-05-11 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-47,2026-05-12 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-47,2026-05-26 01:48:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-47,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-48,2026-05-07 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-48,2026-05-08 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-48,2026-05-23 04:12:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-48,2026-06-28 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-49,2026-05-11 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-49,2026-05-12 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-49,2026-05-26 13:48:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-49,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-50,2026-05-24 01:48:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-50,2026-06-29 18:36:00,Unflagged,Tech: PR / Code Review,
+FLOW-51,2026-05-20 06:36:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-51,2026-06-24 04:12:00,Unflagged,Tech: PR / Code Review,
+FLOW-52,2026-06-01 04:12:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-52,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-53,2026-05-28 09:00:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-53,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-54,2026-05-09 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-54,2026-05-10 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-54,2026-05-26 09:00:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-54,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-55,2026-05-09 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-55,2026-05-10 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-55,2026-05-22 23:24:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-55,2026-06-26 04:12:00,Unflagged,Tech: PR / Code Review,
+FLOW-55,2026-06-27 18:36:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-55,2026-06-27 23:24:00,Unflagged,Tech: PR / Code Review,
+FLOW-56,2026-05-13 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-56,2026-05-14 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-56,2026-06-01 16:12:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-56,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-57,2026-05-13 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-57,2026-05-14 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-57,2026-05-31 01:48:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-57,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-58,2026-05-30 11:24:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-58,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-59,2026-06-01 11:24:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-59,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-60,2026-05-15 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-60,2026-05-16 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-60,2026-06-02 01:48:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-60,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-61,2026-05-15 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-61,2026-05-16 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-61,2026-06-07 06:36:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-61,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-62,2026-06-03 11:24:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-62,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-63,2026-06-02 09:00:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-63,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-64,2026-05-17 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-64,2026-05-18 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-64,2026-06-04 01:48:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-64,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-65,2026-05-17 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-65,2026-05-18 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-65,2026-06-09 04:12:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-65,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-66,2026-06-05 21:00:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-66,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-67,2026-06-07 01:48:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-67,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-68,2026-05-19 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-68,2026-05-20 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-68,2026-06-12 16:12:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-68,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-69,2026-05-19 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-69,2026-05-20 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-69,2026-06-13 04:12:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-69,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-70,2026-06-09 23:24:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-70,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-71,2026-06-11 04:12:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-71,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-72,2026-05-21 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-72,2026-05-22 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-72,2026-06-16 16:12:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-72,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-73,2026-05-21 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-73,2026-05-22 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-73,2026-06-18 01:48:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-73,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-74,2026-06-14 18:36:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-74,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-75,2026-06-14 11:24:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-75,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-76,2026-05-23 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-76,2026-05-24 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-76,2026-06-15 04:12:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-76,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-77,2026-05-23 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-77,2026-05-24 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-77,2026-06-16 18:36:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-77,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-78,2026-06-21 23:24:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-78,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-79,2026-06-22 18:36:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-79,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-80,2026-05-25 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-80,2026-05-26 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-80,2026-06-17 11:24:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-80,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-81,2026-05-25 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-81,2026-05-26 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-81,2026-06-19 11:24:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-81,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-82,2026-06-18 18:36:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-82,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-83,2026-06-20 18:36:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-83,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-84,2026-05-27 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-84,2026-05-28 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-84,2026-06-20 04:12:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-84,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-85,2026-05-27 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-85,2026-05-28 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-85,2026-06-20 21:00:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-85,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-86,2026-06-21 11:24:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-86,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-87,2026-06-26 23:24:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-87,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-88,2026-05-29 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-88,2026-05-30 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-88,2026-06-27 13:48:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-88,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-89,2026-05-29 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-89,2026-05-30 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-89,2026-06-22 16:12:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-89,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-90,2026-06-28 18:36:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-90,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-91,2026-06-28 21:00:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-91,2026-06-30 09:00:00,Unflagged,Tech: PR / Code Review,
+FLOW-92,2026-05-31 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-92,2026-06-01 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-93,2026-05-31 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-93,2026-06-01 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-96,2026-06-02 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-96,2026-06-03 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-97,2026-06-02 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-97,2026-06-03 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-100,2026-06-04 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-100,2026-06-05 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-101,2026-06-04 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-101,2026-06-05 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-104,2026-06-06 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-104,2026-06-07 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-105,2026-06-06 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-105,2026-06-07 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-108,2026-06-08 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-108,2026-06-09 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-109,2026-06-08 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-109,2026-06-09 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-114,2026-06-10 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-114,2026-06-11 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-115,2026-06-10 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-115,2026-06-11 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-116,2026-06-12 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-116,2026-06-13 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-117,2026-06-12 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-117,2026-06-13 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-120,2026-06-14 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-120,2026-06-15 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-121,2026-06-14 11:24:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-121,2026-06-15 01:48:00,Unflagged,Product: Missing Specs & AC,
+FLOW-124,2026-06-16 13:48:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-124,2026-06-17 04:12:00,Unflagged,Product: Missing Specs & AC,
+FLOW-125,2026-06-16 13:48:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-125,2026-06-17 04:12:00,Unflagged,Product: Missing Specs & AC,
+FLOW-128,2026-06-18 13:48:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-128,2026-06-19 04:12:00,Unflagged,Product: Missing Specs & AC,
+FLOW-129,2026-06-18 13:48:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-129,2026-06-19 04:12:00,Unflagged,Product: Missing Specs & AC,
+FLOW-132,2026-06-20 13:48:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-132,2026-06-21 04:12:00,Unflagged,Product: Missing Specs & AC,
+FLOW-133,2026-06-20 13:48:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-133,2026-06-21 04:12:00,Unflagged,Product: Missing Specs & AC,
+FLOW-136,2026-06-22 13:48:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-136,2026-06-23 04:12:00,Unflagged,Product: Missing Specs & AC,
+FLOW-137,2026-06-22 13:48:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-137,2026-06-23 04:12:00,Unflagged,Product: Missing Specs & AC,
+FLOW-140,2026-06-24 13:48:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-140,2026-06-25 04:12:00,Unflagged,Product: Missing Specs & AC,
+FLOW-141,2026-06-24 13:48:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-141,2026-06-25 04:12:00,Unflagged,Product: Missing Specs & AC,
+FLOW-144,2026-06-26 13:48:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-144,2026-06-27 04:12:00,Unflagged,Product: Missing Specs & AC,
+FLOW-145,2026-06-26 13:48:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-145,2026-06-27 04:12:00,Unflagged,Product: Missing Specs & AC,
+FLOW-148,2026-06-28 13:48:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-148,2026-06-29 04:12:00,Unflagged,Product: Missing Specs & AC,
+FLOW-149,2026-06-28 13:48:00,Flagged,Product: Missing Specs & AC,Queue Bottleneck: Product owner backlog grooming queue
+FLOW-149,2026-06-29 04:12:00,Unflagged,Product: Missing Specs & AC,
+FLOW-REG-20,2026-06-06 18:36:00,Flagged,Tech: PR / Code Review,Queue Bottleneck: Waiting for human reviewer review slot
+FLOW-REG-20,2026-06-06 21:00:00,Unflagged,Tech: PR / Code Review,

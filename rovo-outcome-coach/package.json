@@ -1,0 +1,9 @@
+{
+  "name": "rovo-outcome-framing-coach",
+  "version": "1.0.0",
+  "description": "Atlassian Forge Rovo agent \u2014 coaches teams to reframe Jira work from output to outcome orientation using the Input\u2192Activity\u2192Output\u2192Outcome\u2192Impact taxonomy.",
+  "license": "ISC",
+  "engines": {
+    "node": ">=18"
+  }
+}

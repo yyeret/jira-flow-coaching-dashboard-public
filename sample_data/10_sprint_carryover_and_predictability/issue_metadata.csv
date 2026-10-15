@@ -1,0 +1,243 @@
+Issue Key,Labels,Story Points,Unplanned,Flagged,Resolution,Epic Link,Work Class,Cost of Delay,WSJF
+EPIC-1,"revenue, agentic-ai",,No,No,DONE,,Value,,
+EPIC-2,capex,,No,No,DONE,,Value,,
+EPIC-3,"capex, ai-coding-assist",,No,No,DONE,,Value,,
+EPIC-4,techdebt,,No,No,,,Value,,
+EPIC-5,riskreduction,,No,No,,,Value,,
+EPIC-6,capex,,No,No,,,Value,,
+EPIC-7,techdebt,,No,No,,,Value,,
+EPIC-8,"capex, ai-coding-assist",,No,No,,,Value,,
+EPIC-9,revenue,,No,No,,,Value,,
+EPIC-10,riskreduction,,No,No,,,Value,,
+EPIC-11,techdebt,,No,No,,,Value,,
+EPIC-12,capex,,No,No,,,Value,,
+EPIC-13,"techdebt, ai-coding-assist",,No,No,,,Value,,
+EPIC-14,techdebt,,No,No,,,Value,,
+EPIC-15,revenue,,No,No,,,Value,,
+EPIC-16,techdebt,,No,No,,,Value,,
+EPIC-17,"capex, agentic-ai",,No,No,,,Value,,
+EPIC-18,capex,,No,No,,,Value,,
+EPIC-19,techdebt,,No,No,,,Value,,
+EPIC-20,"capex, ai-coding-assist",,No,No,,,Value,,
+FLOW-1,"revenue, agentic-ai",2,No,No,Done,EPIC-1,Value,55,27.50
+FLOW-2,"capex, ai-coding-assist",8,No,No,Done,EPIC-2,Value,28,3.50
+FLOW-3,"riskreduction, agentic-ai",1,No,No,Done,EPIC-2,Value,35,35.00
+FLOW-4,"riskreduction, agentic-ai",8,No,No,Done,EPIC-1,Value,45,5.62
+FLOW-5,"capex, agentic-ai",1,No,No,Done,EPIC-3,Value,28,28.00
+FLOW-6,techdebt,13,No,No,Done,EPIC-1,Value,35,2.69
+FLOW-7,"fixeddate, ai-coding-assist",8,No,No,Done,EPIC-3,Value,100,12.50
+FLOW-8,riskreduction,1,No,No,Done,EPIC-1,Value,45,45.00
+FLOW-9,capex,1,No,No,Done,EPIC-1,Value,5,5.00
+FLOW-10,"capex, agentic-ai",2,No,No,Done,EPIC-2,Value,35,17.50
+FLOW-11,"techdebt, agentic-ai",5,No,No,Done,EPIC-3,Value,22,4.40
+FLOW-12,"revenue, ai-coding-assist",8,No,No,Done,EPIC-3,Value,5,0.62
+FLOW-13,"fixeddate, ai-coding-assist",2,No,No,Done,EPIC-3,Value,35,17.50
+FLOW-14,revenue,3,No,No,Done,EPIC-1,Value,70,23.33
+FLOW-15,"fixeddate, agentic-ai",1,No,No,Done,EPIC-4,Value,5,5.00
+FLOW-16,"riskreduction, agentic-ai",1,No,No,Done,EPIC-3,Value,8,8.00
+FLOW-17,"riskreduction, ai-coding-assist",3,No,No,Done,EPIC-4,Value,55,18.33
+FLOW-18,"capex, agentic-ai",2,No,No,Done,EPIC-3,Value,85,42.50
+FLOW-19,techdebt,2,No,No,Done,EPIC-4,Value,28,14.00
+FLOW-20,agentic-ai,2,No,No,Done,EPIC-4,Value,55,27.50
+FLOW-21,,3,No,No,Done,EPIC-5,Value,22,7.33
+FLOW-22,fixeddate,1,No,No,Done,EPIC-3,Value,35,35.00
+FLOW-23,riskreduction,1,No,No,Done,EPIC-3,Value,100,100.00
+FLOW-24,"techdebt, agentic-ai",2,No,No,Done,EPIC-5,Value,8,4.00
+FLOW-25,"techdebt, agentic-ai",2,No,No,Done,EPIC-5,Value,22,11.00
+FLOW-26,"techdebt, ai-coding-assist",13,No,No,Done,EPIC-4,Value,28,2.15
+FLOW-27,"riskreduction, agentic-ai",1,No,No,Done,EPIC-5,Value,18,18.00
+FLOW-28,"capex, ai-coding-assist",3,No,No,Done,EPIC-4,Value,70,23.33
+FLOW-29,"revenue, ai-coding-assist",8,No,No,Done,EPIC-5,Value,85,10.62
+FLOW-30,techdebt,3,No,No,Done,EPIC-3,Value,55,18.33
+FLOW-31,ai-coding-assist,13,No,No,Done,EPIC-3,Value,12,0.92
+FLOW-32,agentic-ai,2,No,No,Done,EPIC-6,Value,22,11.00
+FLOW-33,"revenue, ai-coding-assist",5,No,No,Done,EPIC-4,Value,85,17.00
+FLOW-34,"capex, agentic-ai",13,No,No,Done,EPIC-4,Value,22,1.69
+FLOW-35,,1,No,No,Done,EPIC-4,Value,35,35.00
+FLOW-36,fixeddate,5,No,No,Done,EPIC-5,Value,22,4.40
+FLOW-37,,3,No,No,Done,EPIC-6,Value,45,15.00
+FLOW-38,"capex, ai-coding-assist",1,No,No,Done,EPIC-4,Value,70,70.00
+FLOW-39,"techdebt, ai-coding-assist",2,No,No,Done,EPIC-6,Value,28,14.00
+FLOW-40,"riskreduction, agentic-ai",2,No,No,Done,EPIC-5,Value,5,2.50
+FLOW-41,,8,No,No,,EPIC-5,Value,55,6.88
+FLOW-42,"capex, ai-coding-assist",2,No,No,Done,EPIC-6,Value,55,27.50
+FLOW-43,"revenue, ai-coding-assist",2,No,No,,EPIC-8,Value,22,11.00
+FLOW-44,ai-coding-assist,2,No,No,Done,EPIC-6,Value,18,9.00
+FLOW-45,ai-coding-assist,13,No,No,Done,EPIC-5,Value,22,1.69
+FLOW-46,revenue,13,No,Yes,,EPIC-8,Value,70,5.38
+FLOW-47,"riskreduction, ai-coding-assist",2,No,Yes,,EPIC-8,Value,55,27.50
+FLOW-48,fixeddate,1,No,No,,EPIC-5,Value,55,55.00
+FLOW-49,agentic-ai,8,No,Yes,,EPIC-8,Value,85,10.62
+FLOW-50,,1,No,No,,EPIC-6,Value,100,100.00
+FLOW-51,"capex, ai-coding-assist",13,No,No,,EPIC-6,Value,85,6.54
+FLOW-52,capex,3,No,Yes,,EPIC-8,Value,100,33.33
+FLOW-53,"revenue, ai-coding-assist",5,No,Yes,,EPIC-8,Value,45,9.00
+FLOW-54,capex,3,No,Yes,,EPIC-7,Value,22,7.33
+FLOW-55,"riskreduction, ai-coding-assist",13,No,No,,EPIC-7,Value,22,1.69
+FLOW-56,riskreduction,2,No,Yes,,EPIC-7,Value,70,35.00
+FLOW-57,"revenue, ai-coding-assist",1,No,Yes,,EPIC-7,Value,35,35.00
+FLOW-58,"revenue, agentic-ai",5,No,Yes,,EPIC-7,Value,28,5.60
+FLOW-59,"revenue, ai-coding-assist",1,No,Yes,,EPIC-9,Value,28,28.00
+FLOW-60,"techdebt, ai-coding-assist",8,No,Yes,,EPIC-8,Value,85,10.62
+FLOW-61,,3,No,Yes,,EPIC-8,Value,85,28.33
+FLOW-62,"techdebt, ai-coding-assist",3,No,Yes,,EPIC-8,Value,18,6.00
+FLOW-63,"riskreduction, agentic-ai",3,No,Yes,,EPIC-8,Value,85,28.33
+FLOW-64,"revenue, ai-coding-assist",2,No,Yes,,EPIC-8,Value,45,22.50
+FLOW-65,capex,13,No,Yes,,EPIC-8,Value,70,5.38
+FLOW-66,"revenue, ai-coding-assist",5,No,Yes,,EPIC-8,Value,28,5.60
+FLOW-67,ai-coding-assist,5,No,Yes,,EPIC-8,Value,18,3.60
+FLOW-68,riskreduction,2,No,Yes,,EPIC-8,Value,28,14.00
+FLOW-69,techdebt,5,No,Yes,,EPIC-8,Value,12,2.40
+FLOW-70,"riskreduction, ai-coding-assist",2,No,Yes,,EPIC-7,Value,18,9.00
+FLOW-71,"fixeddate, ai-coding-assist",5,No,Yes,,EPIC-8,Value,5,1.00
+FLOW-72,techdebt,3,No,Yes,,EPIC-8,Value,45,15.00
+FLOW-73,fixeddate,3,No,Yes,,EPIC-9,Value,18,6.00
+FLOW-74,ai-coding-assist,2,No,Yes,,EPIC-8,Value,55,27.50
+FLOW-75,"riskreduction, agentic-ai",2,No,Yes,,EPIC-8,Value,55,27.50
+FLOW-76,agentic-ai,5,No,Yes,,EPIC-10,Value,55,11.00
+FLOW-77,"techdebt, ai-coding-assist",1,No,Yes,,EPIC-10,Value,35,35.00
+FLOW-78,revenue,2,No,Yes,,EPIC-10,Value,28,14.00
+FLOW-79,techdebt,3,No,Yes,,EPIC-10,Value,12,4.00
+FLOW-80,"techdebt, agentic-ai",13,No,Yes,,EPIC-11,Value,100,7.69
+FLOW-81,"capex, ai-coding-assist",2,No,Yes,,EPIC-11,Value,85,42.50
+FLOW-82,"techdebt, agentic-ai",13,No,Yes,,EPIC-9,Value,18,1.38
+FLOW-83,ai-coding-assist,3,No,Yes,,EPIC-10,Value,22,7.33
+FLOW-84,"fixeddate, agentic-ai",13,No,Yes,,EPIC-10,Value,28,2.15
+FLOW-85,"revenue, agentic-ai",1,No,Yes,,EPIC-10,Value,45,45.00
+FLOW-86,"fixeddate, agentic-ai",13,No,Yes,,EPIC-10,Value,35,2.69
+FLOW-87,fixeddate,3,No,Yes,,EPIC-9,Value,18,6.00
+FLOW-88,capex,13,No,Yes,,EPIC-10,Value,35,2.69
+FLOW-89,"riskreduction, agentic-ai",1,No,Yes,,EPIC-9,Value,22,22.00
+FLOW-90,riskreduction,2,No,Yes,,EPIC-10,Value,22,11.00
+FLOW-91,revenue,3,No,Yes,,EPIC-10,Value,45,15.00
+FLOW-92,fixeddate,2,No,No,,EPIC-12,Value,28,14.00
+FLOW-93,techdebt,5,No,No,,EPIC-11,Value,35,7.00
+FLOW-94,"revenue, ai-coding-assist",1,No,No,,EPIC-10,Value,45,45.00
+FLOW-95,"riskreduction, ai-coding-assist",1,No,No,,EPIC-10,Value,5,5.00
+FLOW-96,"riskreduction, ai-coding-assist",3,No,No,,EPIC-10,Value,35,11.67
+FLOW-97,ai-coding-assist,2,No,No,,EPIC-12,Value,28,14.00
+FLOW-98,ai-coding-assist,3,No,No,,EPIC-13,Value,45,15.00
+FLOW-99,capex,2,No,No,,EPIC-11,Value,18,9.00
+FLOW-100,"riskreduction, agentic-ai",8,No,No,,EPIC-10,Value,100,12.50
+FLOW-101,"riskreduction, agentic-ai",8,No,No,,EPIC-10,Value,55,6.88
+FLOW-102,agentic-ai,8,No,No,,EPIC-13,Value,85,10.62
+FLOW-103,fixeddate,1,No,No,,EPIC-14,Value,85,85.00
+FLOW-104,"revenue, ai-coding-assist",2,No,No,,EPIC-13,Value,28,14.00
+FLOW-105,"techdebt, ai-coding-assist",2,No,No,,EPIC-12,Value,45,22.50
+FLOW-106,revenue,2,No,No,,EPIC-13,Value,35,17.50
+FLOW-107,"fixeddate, ai-coding-assist",1,No,No,,EPIC-13,Value,12,12.00
+FLOW-108,riskreduction,5,No,No,,EPIC-15,Value,5,1.00
+FLOW-109,"capex, agentic-ai",3,No,No,,EPIC-15,Value,28,9.33
+FLOW-110,"revenue, agentic-ai",5,No,No,,EPIC-16,Value,100,20.00
+FLOW-111,riskreduction,2,No,No,,EPIC-16,Value,28,14.00
+FLOW-112,,2,No,No,,EPIC-15,Value,12,6.00
+FLOW-113,"revenue, ai-coding-assist",3,No,No,,EPIC-15,Value,45,15.00
+FLOW-114,capex,3,No,No,,EPIC-15,Value,18,6.00
+FLOW-115,"techdebt, agentic-ai",8,No,No,,EPIC-15,Value,100,12.50
+FLOW-116,riskreduction,3,No,No,,EPIC-14,Value,18,6.00
+FLOW-117,"techdebt, ai-coding-assist",1,No,No,,EPIC-16,Value,22,22.00
+FLOW-118,"riskreduction, ai-coding-assist",1,No,No,,EPIC-14,Value,55,55.00
+FLOW-119,"techdebt, ai-coding-assist",3,No,No,,EPIC-16,Value,100,33.33
+FLOW-120,techdebt,1,No,No,,EPIC-16,Value,22,22.00
+FLOW-121,"techdebt, agentic-ai",1,No,No,,EPIC-14,Value,28,28.00
+FLOW-122,riskreduction,5,No,No,,EPIC-14,Value,100,20.00
+FLOW-123,,8,No,No,,EPIC-14,Value,45,5.62
+FLOW-124,"techdebt, ai-coding-assist",1,No,No,,EPIC-16,Value,85,85.00
+FLOW-125,techdebt,5,No,No,,EPIC-15,Value,18,3.60
+FLOW-126,"riskreduction, ai-coding-assist",3,No,No,,EPIC-16,Value,22,7.33
+FLOW-127,"capex, agentic-ai",3,No,No,,EPIC-16,Value,28,9.33
+FLOW-128,"riskreduction, agentic-ai",5,No,No,,EPIC-14,Value,22,4.40
+FLOW-129,"fixeddate, agentic-ai",2,No,No,,EPIC-14,Value,12,6.00
+FLOW-130,techdebt,5,No,No,,EPIC-14,Value,45,9.00
+FLOW-131,"capex, agentic-ai",3,No,No,,EPIC-17,Value,45,15.00
+FLOW-132,fixeddate,3,No,No,,EPIC-15,Value,22,7.33
+FLOW-133,"riskreduction, agentic-ai",1,No,No,,EPIC-16,Value,18,18.00
+FLOW-134,"capex, ai-coding-assist",5,No,No,,EPIC-15,Value,22,4.40
+FLOW-135,"revenue, agentic-ai",2,No,No,,EPIC-16,Value,18,9.00
+FLOW-136,techdebt,3,No,No,,EPIC-15,Value,55,18.33
+FLOW-137,"techdebt, agentic-ai",5,No,No,,EPIC-18,Value,12,2.40
+FLOW-138,"riskreduction, ai-coding-assist",3,No,No,,EPIC-18,Value,45,15.00
+FLOW-139,"techdebt, agentic-ai",8,No,No,,EPIC-17,Value,55,6.88
+FLOW-140,riskreduction,1,No,No,,EPIC-18,Value,5,5.00
+FLOW-141,,2,No,No,,EPIC-18,Value,28,14.00
+FLOW-142,"techdebt, ai-coding-assist",5,No,No,,EPIC-18,Value,70,14.00
+FLOW-143,agentic-ai,1,No,No,,EPIC-18,Value,12,12.00
+FLOW-144,"riskreduction, agentic-ai",13,No,No,,EPIC-18,Value,35,2.69
+FLOW-145,"riskreduction, agentic-ai",13,No,No,,EPIC-16,Value,18,1.38
+FLOW-146,agentic-ai,3,No,No,,EPIC-18,Value,85,28.33
+FLOW-147,agentic-ai,3,No,No,,EPIC-16,Value,45,15.00
+FLOW-148,agentic-ai,1,No,No,,EPIC-18,Value,85,85.00
+FLOW-149,"riskreduction, agentic-ai",8,No,No,,EPIC-16,Value,18,2.25
+FLOW-150,"revenue, agentic-ai",5,No,No,,EPIC-16,Value,70,14.00
+FLOW-151,techdebt,13,No,No,,EPIC-16,Value,55,4.23
+FLOW-152,"capex, ai-coding-assist",5,No,No,,EPIC-16,Value,18,3.60
+FLOW-153,"revenue, agentic-ai",3,No,No,,EPIC-18,Value,35,11.67
+FLOW-154,"revenue, ai-coding-assist",1,No,No,,EPIC-16,Value,45,45.00
+FLOW-155,,13,No,No,,EPIC-18,Value,100,7.69
+FLOW-156,capex,3,No,No,,EPIC-16,Value,22,7.33
+FLOW-157,riskreduction,3,No,No,,EPIC-16,Value,35,11.67
+FLOW-158,fixeddate,1,No,No,,EPIC-19,Value,35,35.00
+FLOW-159,ai-coding-assist,8,No,No,,EPIC-19,Value,28,3.50
+FLOW-160,"techdebt, agentic-ai",3,No,No,,EPIC-18,Value,5,1.67
+FLOW-161,"fixeddate, agentic-ai",2,No,No,,EPIC-19,Value,85,42.50
+FLOW-162,capex,5,No,No,,EPIC-19,Value,8,1.60
+FLOW-163,"capex, ai-coding-assist",3,No,No,,EPIC-18,Value,8,2.67
+FLOW-164,"capex, ai-coding-assist",2,No,No,,EPIC-19,Value,100,50.00
+FLOW-165,agentic-ai,1,No,No,,EPIC-18,Value,22,22.00
+FLOW-166,"techdebt, agentic-ai",3,No,No,,EPIC-20,Value,12,4.00
+FLOW-167,fixeddate,2,No,No,,EPIC-20,Value,55,27.50
+FLOW-168,,13,No,No,,EPIC-18,Value,70,5.38
+FLOW-169,,3,No,No,,EPIC-17,Value,45,15.00
+FLOW-170,riskreduction,1,No,No,,EPIC-20,Value,22,22.00
+FLOW-171,techdebt,1,No,No,,EPIC-20,Value,100,100.00
+FLOW-172,agentic-ai,5,No,No,,EPIC-20,Value,28,5.60
+FLOW-173,"revenue, ai-coding-assist",3,No,No,,EPIC-18,Value,8,2.67
+FLOW-174,agentic-ai,1,No,No,,EPIC-20,Value,18,18.00
+FLOW-175,"fixeddate, ai-coding-assist",1,No,No,,EPIC-19,Value,28,28.00
+FLOW-176,agentic-ai,3,No,No,,EPIC-18,Value,85,28.33
+FLOW-177,"techdebt, agentic-ai",2,No,No,,EPIC-20,Value,22,11.00
+FLOW-178,"techdebt, agentic-ai",13,No,No,,EPIC-19,Value,5,0.38
+FLOW-179,"riskreduction, agentic-ai",13,No,No,,EPIC-18,Value,28,2.15
+FLOW-180,,5,No,No,,EPIC-20,Value,22,4.40
+FLOW-181,capex,5,No,No,,EPIC-18,Value,8,1.60
+FLOW-182,"capex, ai-coding-assist",2,No,No,,EPIC-18,Value,45,22.50
+FLOW-183,"fixeddate, agentic-ai",2,No,No,,EPIC-20,Value,28,14.00
+FLOW-184,"capex, ai-coding-assist",3,No,No,,EPIC-20,Value,85,28.33
+FLOW-185,"riskreduction, ai-coding-assist",3,No,No,,EPIC-20,Value,22,7.33
+FLOW-186,"riskreduction, agentic-ai",5,No,No,,EPIC-20,Value,22,4.40
+FLOW-187,"fixeddate, ai-coding-assist",13,No,No,,EPIC-20,Value,8,0.62
+FLOW-188,revenue,2,No,No,,EPIC-19,Value,55,27.50
+FLOW-189,"capex, ai-coding-assist",1,No,No,,EPIC-20,Value,5,5.00
+FLOW-190,ai-coding-assist,13,No,No,,EPIC-20,Value,28,2.15
+FLOW-191,,2,No,No,,EPIC-20,Value,35,17.50
+FLOW-192,"fixeddate, ai-coding-assist",3,No,No,,EPIC-20,Value,12,4.00
+FLOW-193,fixeddate,3,No,No,,EPIC-20,Value,55,18.33
+FLOW-194,"riskreduction, ai-coding-assist",5,No,No,,EPIC-20,Value,85,17.00
+FLOW-195,"capex, agentic-ai",2,No,No,,EPIC-19,Value,18,9.00
+FLOW-196,"revenue, agentic-ai",3,No,No,,EPIC-20,Value,45,15.00
+FLOW-REG-1,"regression, failure-demand, agentic-ai",1,No,No,Done,EPIC-1,Failure Demand,75,75.00
+FLOW-REG-2,"regression, failure-demand, agentic-ai",1,No,No,Done,EPIC-1,Failure Demand,90,90.00
+FLOW-REG-3,"regression, failure-demand, agentic-ai",1,No,No,Done,EPIC-2,Failure Demand,75,75.00
+FLOW-REG-4,"regression, failure-demand, agentic-ai",1,No,No,Done,EPIC-1,Failure Demand,90,90.00
+FLOW-REG-5,"regression, failure-demand, agentic-ai",1,No,No,Done,EPIC-1,Failure Demand,75,75.00
+FLOW-REG-6,"regression, failure-demand, agentic-ai",1,No,No,Done,EPIC-1,Failure Demand,60,60.00
+FLOW-REG-7,"regression, failure-demand, agentic-ai",1,No,No,Done,EPIC-1,Failure Demand,60,60.00
+FLOW-REG-8,"regression, failure-demand, agentic-ai",1,No,No,Done,EPIC-3,Failure Demand,60,60.00
+FLOW-REG-9,"regression, failure-demand, agentic-ai",1,No,No,Done,EPIC-1,Failure Demand,90,90.00
+FLOW-REG-10,"regression, failure-demand, agentic-ai",1,No,No,Done,EPIC-3,Failure Demand,90,90.00
+FLOW-REG-11,"regression, failure-demand, agentic-ai",1,No,No,Done,EPIC-3,Failure Demand,90,90.00
+FLOW-REG-12,"regression, failure-demand, agentic-ai",1,No,No,Done,EPIC-3,Failure Demand,60,60.00
+FLOW-REG-13,"regression, failure-demand, agentic-ai",1,No,No,Done,EPIC-3,Failure Demand,75,75.00
+FLOW-REG-14,"regression, failure-demand, agentic-ai",1,No,No,Done,EPIC-4,Failure Demand,60,60.00
+FLOW-REG-15,"regression, failure-demand, agentic-ai",1,No,No,Done,EPIC-4,Failure Demand,90,90.00
+FLOW-REG-16,"regression, failure-demand, agentic-ai",1,No,No,Done,EPIC-5,Failure Demand,75,75.00
+FLOW-REG-17,"regression, failure-demand, agentic-ai",1,No,No,Done,EPIC-5,Failure Demand,75,75.00
+FLOW-REG-18,"regression, failure-demand, agentic-ai",1,No,No,Done,EPIC-3,Failure Demand,60,60.00
+FLOW-REG-19,"regression, failure-demand, agentic-ai",1,No,No,Done,EPIC-3,Failure Demand,90,90.00
+FLOW-REG-20,"regression, failure-demand, agentic-ai",1,No,No,Done,EPIC-5,Failure Demand,90,90.00
+FLOW-REG-21,"regression, failure-demand, agentic-ai",1,No,No,Done,EPIC-3,Failure Demand,75,75.00
+FLOW-REG-22,"regression, failure-demand, agentic-ai",1,No,No,Done,EPIC-6,Failure Demand,60,60.00
+FLOW-REG-23,"regression, failure-demand, agentic-ai",1,No,No,Done,EPIC-3,Failure Demand,60,60.00
+FLOW-REG-24,"regression, failure-demand, agentic-ai",1,No,No,Done,EPIC-5,Failure Demand,60,60.00
+FLOW-REG-25,"regression, failure-demand, agentic-ai",1,No,No,Done,EPIC-4,Failure Demand,90,90.00
+FLOW-REG-26,"regression, failure-demand, agentic-ai",1,No,No,,EPIC-5,Failure Demand,60,60.00

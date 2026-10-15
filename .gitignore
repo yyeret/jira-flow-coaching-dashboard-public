@@ -1,0 +1,31 @@
+node_modules
+__pycache__/
+*.pyc
+data_export/
+
+# Customer epic data / LLM-classification artifacts (customer data — keep out of git)
+epics_raw.json
+epics_batch_*.json
+
+# Secrets, local tools, generated files, and private Jira exports
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.tools/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.coverage
+coverage/
+.DS_Store
+.playwright-cli/
+batch_results_*.json
+# Real exports may be anywhere; only generated demonstration CSVs are publishable.
+*.csv
+!sample_data/**/*.csv
+board_config.json
+jira-export-*/

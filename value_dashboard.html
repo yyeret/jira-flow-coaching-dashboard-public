@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Value & Outcome Coaching Dashboard</title>
+    <!-- Modern Google Fonts -->
+    <!-- Chart.js and PapaParse via CDN -->
+    <script src="vendor/chart.umd.js"></script>
+    <script src="vendor/papaparse.min.js"></script>
+    <script src="vendor/localforage.min.js"></script>
+    
+    <style>
+        :root {
+            /* Theme Variables matching index.html */
+            --bg-color: #f9fafb;
+            --panel-bg: #ffffff;
+            --panel-border: #e5e7eb;
+            --panel-hover: #f3f4f6;
+            --sidebar-bg: #f3f4f6;
+            --checklist-bg: #ffffff;
+            --text-color: #111827;
+            --text-muted: #6b7280;
+            --accent-color: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.2);
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --card-glow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            --header-bg: linear-gradient(90deg, #f3f4f6 0%, #ffffff 100%);
+            
+            /* Taxonomy colors */
+            --tax-input: #6b7280;      /* Grey */
+            --tax-activity: #3b82f6;   /* Blue */
+            --tax-output: #f59e0b;     /* Amber */
+            --tax-outcome: #10b981;    /* Green */
+            --tax-impact: #8b5cf6;     /* Purple */
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #0b0f19;
+                --panel-bg: #161e31;
+                --panel-border: #24314f;
+                --panel-hover: #1e2942;
+                --sidebar-bg: #0f1626;
+                --checklist-bg: #111827;
+                --text-color: #f3f4f6;
+                --text-muted: #9ca3af;
+                --accent-color: #3b82f6;
+                --accent-glow: rgba(59, 130, 246, 0.4);
+                --card-glow: 0 4px 20px rgba(0, 0, 0, 0.3);
+                --header-bg: linear-gradient(90deg, #111827 0%, #161e31 100%);
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Top Header */
+        header {
+            background: var(--header-bg);
+            border-bottom: 1px solid var(--panel-border);
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--card-glow);
+        }
+
+        .header-title h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .header-title p {
+            font-size: 0.825rem;
+            color: var(--text-muted);
+            margin-top: 0.2rem;
+        }
+
+        .nav-back-btn {
+            background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
+            color: white;
+            text-decoration: none;
+            padding: 0.6rem 1.25rem;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid var(--panel-border);
+        }
+
+        .nav-back-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        /* Drag and Drop Landing Zone */
+        #uploadZone {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem;
+            margin: 3rem auto;
+            max-width: 600px;
+            width: 90%;
+            background-color: var(--panel-bg);
+            border: 2px dashed var(--accent-color);
+            border-radius: 16px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: var(--card-glow);
+            transition: all 0.3s ease;
+        }
+
+        #uploadZone:hover {
+            border-color: var(--accent-color);
+            background-color: var(--panel-hover);
+            transform: scale(1.02);
+        }
+
+        #uploadZone svg {
+            width: 64px;
+            height: 64px;
+            color: var(--tax-impact);
+            margin-bottom: 1.5rem;
+        }
+
+        #uploadZone h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        #uploadZone p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Dashboard Workspace Layout */
+        .dashboard-container {
+            display: none; /* Shown after upload */
+            flex: 1;
+            grid-template-columns: 290px 1fr;
+            min-height: calc(100vh - 75px);
+        }
+
+        /* Left Sidebar (Filters) */
+        aside {
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--panel-border);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-height: calc(100vh - 75px);
+            overflow-y: auto;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .filter-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+        }
+
+        select {
+            width: 100%;
+            background-color: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            color: var(--text-color);
+            padding: 0.6rem;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        select:focus {
+            border-color: var(--accent-color);
+        }
+
+        /* Coaching guide card */
+        .coaching-guide-card {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(59, 130, 246, 0.08) 100%);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 1.25rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .coaching-guide-card h4 {
+            font-weight: 600;
+            color: var(--tax-impact);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        /* Main Workspace Content */
+        main {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            overflow-y: auto;
+            max-height: calc(100vh - 75px);
+            scroll-behavior: smooth;
+        }
+
+        /* Notification Banner */
+        .banner {
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        
+        .banner.warning {
+            background-color: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            color: var(--warning-color);
+        }
+
+        .banner.success {
+            background-color: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            color: var(--success-color);
+        }
+
+        /* KPI Cards Grid */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .kpi-card {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            box-shadow: var(--card-glow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: var(--accent-color);
+        }
+
+        .kpi-card.outcomes::before { background-color: var(--tax-outcome); }
+        .kpi-card.outputs::before { background-color: var(--tax-output); }
+
+        .kpi-title {
+            font-size: 0.775rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+        }
+
+        .kpi-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+
+        .kpi-sub {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Chart Panels */
+        .chart-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 900px) {
+            .chart-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .chart-panel {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: var(--card-glow);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .chart-header {
+            border-bottom: 1px solid var(--panel-border);
+            padding-bottom: 0.75rem;
+        }
+
+        .chart-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .chart-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.1rem;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 320px;
+        }
+
+        /* Epic coaching List */
+        .epic-list-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .epic-card {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--card-glow);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            transition: transform 0.2s ease;
+        }
+
+        .epic-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .epic-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            border-bottom: 1px solid var(--panel-border);
+            padding-bottom: 0.75rem;
+        }
+
+        .epic-title-group h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        .epic-title-group span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .badge {
+            font-size: 0.725rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            color: white;
+        }
+
+        .badge.input { background-color: var(--tax-input); }
+        .badge.activity { background-color: var(--tax-activity); }
+        .badge.output { background-color: var(--tax-output); }
+        .badge.outcome { background-color: var(--tax-outcome); }
+        .badge.impact { background-color: var(--tax-impact); }
+
+        .epic-body-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .epic-body-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .analysis-block {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .block-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .analysis-text {
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .rationale {
+            font-style: italic;
+            color: var(--text-muted);
+            margin-top: 0.4rem;
+        }
+
+        .suggestion-box {
+            background-color: var(--panel-hover);
+            border-left: 3px solid var(--tax-outcome);
+            padding: 0.8rem 1rem;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            line-height: 1.45;
+            position: relative;
+        }
+
+        .smell-alert {
+            background-color: rgba(239, 68, 68, 0.08);
+            border-left: 3px solid var(--danger-color);
+            padding: 0.6rem 0.8rem;
+            border-radius: 0 6px 6px 0;
+            font-size: 0.825rem;
+            color: var(--danger-color);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+
+        /* Practice sandbox styling */
+        .sandbox-container {
+            border-top: 1px solid var(--panel-border);
+            padding-top: 0.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .sandbox-input {
+            width: 100%;
+            background-color: var(--bg-color);
+            border: 1px solid var(--panel-border);
+            color: var(--text-color);
+            padding: 0.6rem;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            outline: none;
+            resize: vertical;
+        }
+
+        .sandbox-input:focus {
+            border-color: var(--accent-color);
+        }
+
+        .sandbox-feedback {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            font-size: 0.75rem;
+            align-items: center;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            color: var(--text-muted);
+        }
+
+        .check-item.passed {
+            color: var(--success-color);
+        }
+        .check-item.failed {
+            color: var(--danger-color);
+        }
+
+        .sniff-badge {
+            font-weight: 600;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            display: none;
+        }
+        .sniff-badge.passed {
+            display: inline-block;
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        /* Clipboard copy button */
+        .copy-suggestion-btn {
+            align-self: flex-start;
+            background: transparent;
+            border: 1px solid var(--panel-border);
+            color: var(--text-color);
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: all 0.2s;
+            margin-top: 0.4rem;
+        }
+        
+        .copy-suggestion-btn:hover {
+            background-color: var(--panel-hover);
+            border-color: var(--tax-outcome);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* ── Print / PDF ─────────────────────────────────────────────── */
+        @page { size: A4 portrait; margin: 1.2cm; }
+
+        @media print {
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+            body { background: white !important; }
+
+            header {
+                background: white !important;
+                padding: 0.5rem 1rem !important;
+                border-bottom: 2px solid #374151 !important;
+            }
+            header button, header a { display: none !important; }
+
+            .print-report-meta {
+                display: block !important;
+                font-size: 0.75rem;
+                color: #6b7280;
+                margin-top: 0.25rem;
+            }
+
+            #uploadZone { display: none !important; }
+
+            .dashboard-container {
+                display: block !important;
+                min-height: unset !important;
+            }
+            aside { display: none !important; }
+            main { width: 100% !important; padding: 0 !important; }
+
+            #enrichmentBanner { page-break-inside: avoid; }
+            #enrichmentBanner button { display: none !important; }
+
+            .kpi-grid {
+                display: grid !important;
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: 0.5rem !important;
+                page-break-inside: avoid;
+                margin-bottom: 1rem !important;
+            }
+            .kpi-card { box-shadow: none !important; border: 1px solid #e5e7eb !important; }
+
+            .chart-grid {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 1rem !important;
+                page-break-inside: avoid;
+                page-break-after: always;
+            }
+            .chart-panel { box-shadow: none !important; border: 1px solid #e5e7eb !important; }
+
+            .chart-container canvas { display: none; }
+            .chart-print-img { display: block !important; width: 100% !important; height: auto !important; }
+
+            .epic-list-section { page-break-before: always; }
+            .epic-card {
+                page-break-inside: avoid;
+                box-shadow: none !important;
+                border: 1px solid #e5e7eb !important;
+                margin-bottom: 0.75rem !important;
+            }
+            .epic-body-grid { grid-template-columns: 1fr !important; }
+            .copy-suggestion-btn { display: none !important; }
+        }
+
+        .print-report-meta { display: none; }
+        .chart-print-img { display: none; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-title">
+            <h1>
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                </svg>
+                Value & Outcome Coaching Dashboard
+            </h1>
+            <p>Evaluating work spaces by outcome orientation and coaching leadership on descaling output framing</p>
+        </div>
+        <div style="display:flex;gap:0.75rem;align-items:center;">
+            <span class="print-report-meta" id="printMeta"></span>
+            <button onclick="printReport()" class="nav-back-btn" style="background:linear-gradient(135deg,#4b5563 0%,#374151 100%);" title="Download PDF Report">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
+                </svg>
+                Download PDF
+            </button>
+            <button id="clearSavedDataBtn" class="nav-back-btn">Clear saved data</button>
+            <button onclick="reloadFolder()" class="nav-back-btn" style="background:linear-gradient(135deg,#4b5563 0%,#374151 100%);">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                </svg>
+                Load Folder
+            </button>
+            <a href="index.html" class="nav-back-btn">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                </svg>
+                Flow Analytics Dashboard
+            </a>
+        </div>
+    </header>
+
+    <!-- Upload Landing Zone -->
+    <div id="uploadZone">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5M5 19v-4m14 4v-5m0 0l-3-3m3 3l3-3m-12 1h4m-4 4h2"></path>
+        </svg>
+        <h2>Drop exported folder here</h2>
+        <p>Drop the directory containing issue exports (metadata, flow, links, and value analysis) to load</p>
+        <input type="file" id="folderInput" webkitdirectory directory multiple style="display:none">
+        <button class="nav-back-btn" onclick="document.getElementById('folderInput').click()" style="margin: 0 auto; background: var(--accent-color);">Select Directory</button>
+    </div>
+
+    <!-- Main Workspace -->
+    <div class="dashboard-container" id="dashboardContainer">
+        <!-- Sidebar filters -->
+        <aside>
+            <div class="filter-group">
+                <label for="spaceSelect" class="filter-label">Project / Space</label>
+                <select id="spaceSelect">
+                    <option value="all">All Spaces</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="typeSelect" class="filter-label">Issue Type</label>
+                <select id="typeSelect">
+                    <option value="all">All Types</option>
+                    <option value="Epic">Epics Only</option>
+                    <option value="Story">Stories Only</option>
+                    <option value="Bug">Bugs Only</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="statusSelect" class="filter-label">Status Category</label>
+                <select id="statusSelect">
+                    <option value="all">All Statuses</option>
+                    <option value="Done">Done Only</option>
+                    <option value="WIP">In Progress / WIP</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="enrichFilter" class="filter-label">Taxonomy Level</label>
+                <select id="enrichFilter">
+                    <option value="all">All Levels</option>
+                    <option value="Impact">Impact</option>
+                    <option value="Outcome">Outcome</option>
+                    <option value="Output">Output</option>
+                    <option value="Activity">Activity</option>
+                    <option value="Input">Input</option>
+                </select>
+            </div>
+
+        </aside>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Enrichment State Banner -->
+            <div id="enrichmentBanner" class="banner warning">
+                <span>Rule-based fallback active. Run session enrichment for LLM-backed outcome classifications and framings.</span>
+            </div>
+
+            <!-- KPI Cards Grid -->
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-title">Total Initiatives</div>
+                    <div class="kpi-value" id="kpiTotal">-</div>
+                    <div class="kpi-sub">Total issues analyzed</div>
+                </div>
+                <div class="kpi-card outcomes">
+                    <div class="kpi-title">Value Oriented %</div>
+                    <div class="kpi-value" id="kpiValueOriented">-</div>
+                    <div class="kpi-sub">% of Outcome + Impact work</div>
+                </div>
+                <div class="kpi-card outputs">
+                    <div class="kpi-title">Output Focus %</div>
+                    <div class="kpi-value" id="kpiOutputFocus">-</div>
+                    <div class="kpi-sub">% of Output + Activity work</div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="chart-grid">
+                <!-- Stacked Bar Chart -->
+                <div class="chart-panel">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Value Taxonomy by Space</h3>
+                        <p class="chart-subtitle">Stacked breakdown of work categories across different projects</p>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="stackedBarChartCanvas"></canvas>
+                    </div>
+                </div>
+
+                <!-- Donut Chart -->
+                <div class="chart-panel">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Global Distribution</h3>
+                        <p class="chart-subtitle">Aggregated distribution of work levels</p>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="donutChartCanvas"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Epic Coaching Hub -->
+            <div class="epic-list-section">
+                <div style="border-bottom: 2px solid var(--panel-border); padding-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: center;">
+                    <h2 style="font-weight: 600;">Epic Coaching Hub</h2>
+                    <span style="font-size: 0.85rem; color: var(--text-muted);" id="epicCountText">0 Epics Found</span>
+                </div>
+                <div id="epicListContainer" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    <!-- Dynamically populated -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Global Data Variables
+        let rawData = [];
+        let rawMetadata = [];
+        let rawValueAnalysis = [];
+        let spaces = [];
+        
+        let stackedChart = null;
+        let donutChart = null;
+        
+        let isLlmEnriched = false;
+
+        // Upload handler
+        const folderInput = document.getElementById('folderInput');
+        const uploadZone = document.getElementById('uploadZone');
+
+        uploadZone.addEventListener('click', () => {
+            if (uploadZone.style.display !== 'none') {
+                folderInput.click();
+            }
+        });
+
+        // Setup localforage check
+        window.addEventListener('DOMContentLoaded', async () => {
+            try {
+                if (typeof localforage !== 'undefined') {
+                    const cached = await localforage.getItem('cachedDashboardData');
+                    const cachedValue = await localforage.getItem('cachedValueAnalysisData');
+                    if (cached && cached.mainDataObj) {
+                        rawValueAnalysis = cachedValue || [];
+                        applyData(cached.metaData, cached.mainDataObj.data, rawValueAnalysis);
+                    }
+                }
+            } catch (err) {
+                console.error('Error loading cached data:', err);
+            }
+        });
+
+        folderInput.addEventListener('change', e => {
+            const files = Array.from(e.target.files);
+            const mainFile = files.find(f => f.name.includes('flow_analytics_export.csv') || f.name.includes('custom_flow_analytics_export.csv'));
+            const metaFile = files.find(f => f.name.includes('issue_metadata.csv') || f.name.includes('custom_issue_metadata.csv'));
+            const valueFile = files.find(f => f.name.includes('issue_value_analysis.csv'));
+
+            if (!mainFile) {
+                alert("Could not find a flow analytics export CSV in the selected folder.");
+                return;
+            }
+
+            let metaPromise = metaFile ? parseLocalCSV(metaFile) : Promise.resolve([]);
+            let mainPromise = parseLocalCSV(mainFile);
+            let valuePromise = valueFile ? parseLocalCSV(valueFile) : Promise.resolve([]);
+
+            Promise.all([metaPromise, mainPromise, valuePromise]).then(results => {
+                const metaData = results[0];
+                const mainData = results[1];
+                const valueData = results[2];
+
+                rawValueAnalysis = valueData;
+                
+                // Cache to localforage
+                if (typeof localforage !== 'undefined') {
+                    localforage.setItem('cachedValueAnalysisData', valueData).catch(err => console.error(err));
+                    localforage.getItem('cachedDashboardData').then(cached => {
+                        const newCache = cached || {};
+                        newCache.metaData = metaData;
+                        newCache.mainDataObj = { data: mainData, meta: { fields: Object.keys(mainData[0] || {}) } };
+                        localforage.setItem('cachedDashboardData', newCache);
+                    });
+                }
+
+                applyData(metaData, mainData, valueData);
+            }).catch(err => {
+                console.error("Error parsing files:", err);
+                alert("Error parsing files: " + err.message);
+            });
+            
+            e.target.value = '';
+        });
+
+        function parseLocalCSV(file) {
+            return new Promise((resolve, reject) => {
+                Papa.parse(file, {
+                    header: true,
+                    skipEmptyLines: true,
+                    encoding: 'UTF-8',
+                    complete: function(results) {
+                        resolve(results.data);
+                    },
+                    error: reject
+                });
+            });
+        }
+
+        // Apply loaded data to view
+        function applyData(metaData, mainData, valueData) {
+            rawMetadata = metaData;
+            rawData = mainData;
+            rawValueAnalysis = valueData || [];
+            
+            isLlmEnriched = rawValueAnalysis.length > 0;
+            updateBannerState();
+
+            // Extract space keys
+            const spaceSet = new Set();
+            rawData.forEach(row => {
+                const key = row['Issue Key'];
+                if (key && key.includes('-')) {
+                    spaceSet.add(key.split('-')[0]);
+                }
+            });
+            spaces = Array.from(spaceSet).sort();
+            
+            populateSpacesDropdown();
+            
+            uploadZone.style.display = 'none';
+            document.getElementById('dashboardContainer').style.display = 'grid';
+            
+            setupFilters();
+            updateDashboard();
+        }
+
+        function updateBannerState() {
+            const banner = document.getElementById('enrichmentBanner');
+            if (isLlmEnriched) {
+                banner.className = 'banner success';
+                banner.innerHTML = '<span>🚀 <b>Enriched Analysis Active:</b> Classifications, rationales, and outcome framing loaded from <code>issue_value_analysis.csv</code>.</span><button onclick="reloadFolder()" style="margin-left:1rem;padding:0.2rem 0.75rem;font-size:0.75rem;border-radius:5px;border:1px solid currentColor;background:transparent;color:inherit;cursor:pointer;">Reload Folder</button>';
+            } else {
+                banner.className = 'banner warning';
+                banner.innerHTML = '<span>⚠️ <b>Rule-based mode:</b> Reload your data folder — make sure <code>issue_value_analysis.csv</code> is included alongside the other CSVs.</span><button onclick="reloadFolder()" style="margin-left:1rem;padding:0.2rem 0.75rem;font-size:0.75rem;border-radius:5px;border:1px solid currentColor;background:transparent;color:inherit;cursor:pointer;">Reload Folder</button>';
+            }
+        }
+
+        function reloadFolder() {
+            if (typeof localforage !== 'undefined') {
+                localforage.removeItem('cachedValueAnalysisData').catch(() => {});
+                localforage.removeItem('cachedDashboardData').catch(() => {});
+            }
+            document.getElementById('uploadZone').style.display = '';
+            document.getElementById('dashboardContainer').style.display = 'none';
+            document.getElementById('folderInput').click();
+        }
+
+        function populateSpacesDropdown() {
+            const select = document.getElementById('spaceSelect');
+            // Keep first option
+            select.innerHTML = '<option value="all">All Spaces</option>';
+            spaces.forEach(space => {
+                const opt = document.createElement('option');
+                opt.value = space;
+                opt.textContent = space;
+                select.appendChild(opt);
+            });
+        }
+
+        function setupFilters() {
+            const filters = ['spaceSelect', 'typeSelect', 'statusSelect', 'enrichFilter'];
+            filters.forEach(id => {
+                document.getElementById(id).addEventListener('change', updateDashboard);
+            });
+        }
+
+        // Rule-based classification fallback engine
+        function classifyIssueRuleBased(summary, type) {
+            if (!summary) return 'Output';
+            const text = summary.toLowerCase();
+            
+            // Heuristic taxonomy triggers
+            const impactKeywords = ['revenue', 'profit', 'churn', 'retention', 'acquisition', 'growth', 'margin', 'conversion', 'nps', 'roi', 'sales', 'market share', 'bookings', 'value'];
+            const outcomeKeywords = ['user can', 'customer can', 'ability to', 'allow user', 'enable', 'reduce time', 'fewer errors', 'faster checkout', 'save money', 'improve satisfaction', 'resulting in', 'results in', 'leads to', 'helps user'];
+            const inputKeywords = ['budget', 'funding', 'hire', 'allocation', 'cost', 'staff', 'resource', 'capacity'];
+            const activityKeywords = ['writing', 'testing', 'fixing', 'refactoring', 'debugging', 'researching', 'analyzing', 'reviewing', 'meeting', 'planning', 'documenting', 'coding', 'discussion', 'grooming', 'sync'];
+            const outputKeywords = ['build', 'launch', 'ship', 'implement', 'add', 'create', 'develop', 'integrate', 'deliver', 'upgrade', 'migration', 'setup', 'run', 'deploy', 'new page', 'dashboard', 'feature', 'button', 'system', 'api', 'endpoint', 'report', 'tool', 'page', 'module', 'service', 'component', 'refactor', 'migrate'];
+
+            if (impactKeywords.some(kw => text.includes(kw))) return 'Impact';
+            if (outcomeKeywords.some(kw => text.includes(kw))) return 'Outcome';
+            if (inputKeywords.some(kw => text.includes(kw))) return 'Input';
+            if (activityKeywords.some(kw => text.includes(kw))) return 'Activity';
+            if (outputKeywords.some(kw => text.includes(kw))) return 'Output';
+
+            // Fallbacks based on types
+            if (type === 'Sub-task' || type === 'Task') return 'Activity';
+            
+            return 'Output'; // default fallback
+        }
+
+        // Rule-based framing suggestion generator
+        function getRuleBasedSuggestion(summary) {
+            if (!summary) return '';
+            
+            // Clean common prefixes
+            const cleanSummary = summary.replace(/^(build|create|add|implement|integrate|connect|migrate|upgrade|setup|develop|integrate with)\b\s*/i, '').trim();
+            const verbMatch = summary.match(/^(build|create|add|implement|integrate|connect|migrate|upgrade|setup|develop|integrate with)\b/i);
+            
+            if (verbMatch) {
+                const verb = verbMatch[0].toLowerCase();
+                if (['build', 'create', 'add', 'implement', 'develop'].includes(verb)) {
+                    return `Users will be able to successfully [perform core task using: ${cleanSummary}], resulting in [measurable metric improvement, e.g., 10% faster checkout or reduced drop-off].`;
+                }
+                if (['integrate', 'connect', 'integrate with'].includes(verb)) {
+                    return `Users or Systems will be able to [use integrated features of ${cleanSummary} seamlessly], resulting in [measurable value, e.g., eliminated double-entry or automated syncing].`;
+                }
+                if (['migrate', 'upgrade'].includes(verb)) {
+                    return `Systems / Administrators will be able to [rely on the enhanced performance and reliability of ${cleanSummary}], resulting in [measurable value, e.g., 20% faster loading or zero downtime].`;
+                }
+            }
+            
+            return `[Target User Class] will be able to [accomplish key user capability enabled by ${summary}], resulting in [measurable outcome/impact].`;
+        }
+
+
+        // Main controller to filter & render
+        function updateDashboard() {
+            const filterSpace = document.getElementById('spaceSelect').value;
+            const filterType = document.getElementById('typeSelect').value;
+            const filterStatus = document.getElementById('statusSelect').value;
+            const filterTaxonomy = document.getElementById('enrichFilter').value;
+
+            // Prepare Map lookup of Value Analysis file
+            const valueMap = {};
+            rawValueAnalysis.forEach(row => {
+                if (row['Issue Key']) {
+                    valueMap[row['Issue Key']] = row;
+                }
+            });
+
+            // Map and classify issue list
+            const processedIssues = rawData.map(row => {
+                const key = row['Issue Key'] || '';
+                const summary = row['Summary'] || '';
+                const type = row['Issue Type'] || '';
+                const status = row['Current Status'] || '';
+                const space = key.split('-')[0] || 'Unknown';
+                
+                // Get taxonomy classification
+                let taxonomy = 'Output';
+                let rationale = '';
+                let suggestedFraming = '';
+                let prescriptiveVerbs = [];
+
+                if (isLlmEnriched && valueMap[key]) {
+                    const l = valueMap[key];
+                    taxonomy = l['Taxonomy Level'] || 'Output';
+                    rationale = l['Rationale'] || '';
+                    suggestedFraming = l['Suggested Outcome Framing'] || '';
+                    prescriptiveVerbs = (l['Prescriptive Verbs'] || '').split(',').map(v => v.trim()).filter(Boolean);
+                } else {
+                    taxonomy = classifyIssueRuleBased(summary, type);
+                    rationale = "Categorized via rule-based heuristics.";
+                    suggestedFraming = getRuleBasedSuggestion(summary);
+                    
+                    // Basic regex scan for prescriptive verbs
+                    const verbs = ['build', 'create', 'add', 'implement', 'integrate', 'connect', 'migrate', 'upgrade', 'setup', 'develop'];
+                    verbs.forEach(v => {
+                        if (summary.toLowerCase().includes(v)) {
+                            prescriptiveVerbs.push(v.charAt(0).toUpperCase() + v.slice(1));
+                        }
+                    });
+                }
+
+                return { key, summary, type, status, space, taxonomy, rationale, suggestedFraming, prescriptiveVerbs };
+            });
+
+            // Apply filters
+            const filteredIssues = processedIssues.filter(item => {
+                if (filterSpace !== 'all' && item.space !== filterSpace) return false;
+                if (filterType !== 'all' && item.type !== filterType) return false;
+                
+                if (filterStatus === 'Done') {
+                    if (item.status !== 'Done' && item.status !== 'Closed') return false;
+                } else if (filterStatus === 'WIP') {
+                    if (item.status === 'Done' || item.status === 'Closed') return false;
+                }
+
+                if (filterTaxonomy !== 'all' && item.taxonomy !== filterTaxonomy) return false;
+
+                return true;
+            });
+
+            // Update KPIs
+            updateKpis(filteredIssues);
+
+            // Render Charts
+            renderCharts(filteredIssues);
+
+            // Render Epic list
+            renderEpicList(filteredIssues);
+        }
+
+        function updateKpis(issues) {
+            const total = issues.length;
+            document.getElementById('kpiTotal').textContent = total;
+
+            if (total === 0) {
+                document.getElementById('kpiValueOriented').textContent = '-';
+                document.getElementById('kpiOutputFocus').textContent = '-';
+                return;
+            }
+
+            const valueCount = issues.filter(i => i.taxonomy === 'Outcome' || i.taxonomy === 'Impact').length;
+            const outputCount = issues.filter(i => i.taxonomy === 'Output' || i.taxonomy === 'Activity' || i.taxonomy === 'Input').length;
+
+            const valuePct = ((valueCount / total) * 100).toFixed(1);
+            const outputPct = ((outputCount / total) * 100).toFixed(1);
+
+            document.getElementById('kpiValueOriented').textContent = `${valuePct}%`;
+            document.getElementById('kpiOutputFocus').textContent = `${outputPct}%`;
+        }
+
+        function renderCharts(issues) {
+            // 1. Calculate stacked taxonomy data per space
+            const taxonomyLevels = ['Input', 'Activity', 'Output', 'Outcome', 'Impact'];
+            const taxColors = {
+                'Input': '#9ca3af',
+                'Activity': '#60a5fa',
+                'Output': '#fbbf24',
+                'Outcome': '#34d399',
+                'Impact': '#c084fc'
+            };
+
+            // Get spaces represented in filtered issues
+            const representedSpaces = Array.from(new Set(issues.map(i => i.space))).sort();
+
+            const spaceData = {};
+            representedSpaces.forEach(s => {
+                spaceData[s] = { 'Input': 0, 'Activity': 0, 'Output': 0, 'Outcome': 0, 'Impact': 0, total: 0 };
+            });
+
+            issues.forEach(i => {
+                if (spaceData[i.space]) {
+                    spaceData[i.space][i.taxonomy]++;
+                    spaceData[i.space].total++;
+                }
+            });
+
+            const datasets = taxonomyLevels.map(level => {
+                return {
+                    label: level,
+                    data: representedSpaces.map(s => {
+                        const total = spaceData[s].total;
+                        return total > 0 ? ((spaceData[s][level] / total) * 100) : 0;
+                    }),
+                    backgroundColor: taxColors[level],
+                    borderWidth: 0
+                };
+            });
+
+            // Destroy existing stacked chart
+            if (stackedChart) stackedChart.destroy();
+
+            const ctxStacked = document.getElementById('stackedBarChartCanvas').getContext('2d');
+            stackedChart = new Chart(ctxStacked, {
+                type: 'bar',
+                data: {
+                    labels: representedSpaces,
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            stacked: true,
+                            grid: { color: 'rgba(0,0,0,0)' }
+                        },
+                        y: {
+                            stacked: true,
+                            max: 100,
+                            title: { display: true, text: 'Percentage (%)' }
+                        }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.dataset.label}: ${context.raw.toFixed(1)}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // 2. Global Distribution Donut Chart
+            const globalCounts = { 'Input': 0, 'Activity': 0, 'Output': 0, 'Outcome': 0, 'Impact': 0 };
+            issues.forEach(i => globalCounts[i.taxonomy]++);
+
+            if (donutChart) donutChart.destroy();
+            const ctxDonut = document.getElementById('donutChartCanvas').getContext('2d');
+            donutChart = new Chart(ctxDonut, {
+                type: 'doughnut',
+                data: {
+                    labels: taxonomyLevels,
+                    datasets: [{
+                        data: taxonomyLevels.map(lvl => globalCounts[lvl]),
+                        backgroundColor: taxonomyLevels.map(lvl => taxColors[lvl]),
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    },
+                    cutout: '65%'
+                }
+            });
+        }
+
+        function escapeHtml(value) {
+            return String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+        }
+
+        function renderEpicList(issues) {
+            const listContainer = document.getElementById('epicListContainer');
+            listContainer.innerHTML = '';
+
+            const epics = issues.filter(i => i.type === 'Epic' || i.type === 'epic');
+            
+            document.getElementById('epicCountText').textContent = `${epics.length} Epics Found`;
+
+            if (epics.length === 0) {
+                listContainer.innerHTML = '<div style="text-align: center; padding: 2rem; color: var(--text-muted);">No Epics found matching current filters.</div>';
+                return;
+            }
+
+            epics.forEach((epic, idx) => {
+                const card = document.createElement('div');
+                card.className = 'epic-card';
+                
+                const hasSmells = epic.prescriptiveVerbs.length > 0 && (epic.taxonomy === 'Output' || epic.taxonomy === 'Activity');
+                const smellHtml = hasSmells 
+                    ? `<div class="smell-alert">
+                         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                           <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                         </svg>
+                         Prescriptive language smell detected: "${escapeHtml(epic.prescriptiveVerbs.join(', '))}"
+                       </div>`
+                    : '';
+
+                card.innerHTML = `
+                    <div class="epic-header">
+                        <div class="epic-title-group">
+                            <h3>${escapeHtml(epic.summary)}</h3>
+                            <span>Key: <b>${escapeHtml(epic.key)}</b> | Status: <b>${escapeHtml(epic.status)}</b> | Space: <b>${escapeHtml(epic.space)}</b></span>
+                        </div>
+                        <span class="badge ${escapeHtml(epic.taxonomy.toLowerCase())}">${escapeHtml(epic.taxonomy)}</span>
+                    </div>
+                    ${smellHtml}
+                    <div class="epic-body-grid">
+                        <div class="analysis-block">
+                            <span class="block-title">Taxonomy & Analysis Rationale</span>
+                            <span class="analysis-text rationale">${escapeHtml(epic.rationale)}</span>
+                        </div>
+                        <div class="analysis-block">
+                            <span class="block-title">Suggested Outcome Framing</span>
+                            <div class="suggestion-box">
+                                <span class="analysis-text" id="sugg-text-${idx}">${escapeHtml(epic.suggestedFraming)}</span>
+                                <button class="copy-suggestion-btn" onclick="copyToClipboard('sugg-text-${idx}', this)">
+                                    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                    </svg>
+                                    Copy Suggestion
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                `;
+                
+                listContainer.appendChild(card);
+            });
+        }
+
+        // Copy suggestion text (used by "Copy Suggestion" buttons on epic cards)
+        function copyToClipboard(textId, button) {
+            const textEl = document.getElementById(textId);
+            if (!textEl) return;
+            navigator.clipboard.writeText(textEl.textContent.trim()).then(() => {
+                const orig = button.innerHTML;
+                button.innerHTML = '<svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg> Copied!';
+                setTimeout(() => { button.innerHTML = orig; }, 2000);
+            });
+        }
+
+        // ── PDF / Print support ────────────────────────────────────────
+        function printReport() {
+            const meta = document.getElementById('printMeta');
+            const space = document.getElementById('spaceSelect')?.value || 'All';
+            const type  = document.getElementById('typeSelect')?.value  || 'All';
+            const tax   = document.getElementById('enrichFilter')?.value || 'All';
+            meta.textContent = `Space: ${space} · Type: ${type} · Taxonomy: ${tax} · Generated: ${new Date().toLocaleDateString()}`;
+            window.print();
+        }
+
+        window.addEventListener('beforeprint', () => {
+            document.querySelectorAll('.chart-container canvas').forEach(canvas => {
+                const existing = canvas.parentNode.querySelector('.chart-print-img');
+                if (existing) existing.remove();
+                const img = document.createElement('img');
+                img.src = canvas.toDataURL('image/png');
+                img.className = 'chart-print-img';
+                canvas.parentNode.appendChild(img);
+            });
+        });
+
+        window.addEventListener('afterprint', () => {
+            document.querySelectorAll('.chart-print-img').forEach(img => img.remove());
+        });
+    </script>
+<script type="module">
+    import { bindClearSavedData } from './js/security.js';
+    bindClearSavedData();
+</script>
+</body>
+</html>

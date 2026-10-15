@@ -1,0 +1,5 @@
+- `[x]` Task 1: Add Layout dropdown UI to Comet Chart controls.
+- `[x]` Task 2: Implement lane-packing ("Tetris") algorithm in `renderSprintCometChart`.
+- `[x]` Task 3: Dynamically configure the Y-axis (Cycle Time Log vs Tracks Linear).
+- `[x]` Task 4: Verify via automated test.
+- `[x]` Task 5: Create private repository yyeret/jira-flow-coaching-dashboard on GitHub and push local commits.

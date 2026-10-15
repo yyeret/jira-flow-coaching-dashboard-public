@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epic Status Rollup Dashboard</title>
+    <script src="vendor/chart.umd.js"></script>
+    <script src="vendor/papaparse.min.js"></script>
+    <script src="vendor/localforage.min.js"></script>
+    <style>
+        :root {
+            --bg-color: #f9fafb;
+            --panel-bg: #ffffff;
+            --panel-border: #e5e7eb;
+            --panel-hover: #f3f4f6;
+            --text-color: #111827;
+            --text-muted: #6b7280;
+            --accent-color: #3b82f6;
+            --card-glow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            --header-bg: linear-gradient(90deg, #f3f4f6 0%, #ffffff 100%);
+            /* Status category colors (echoing the reference chart) */
+            --cat-todo: #c0392b;     /* red    */
+            --cat-progress: #f0ad4e; /* amber  */
+            --cat-qa: #3f3fa0;       /* indigo */
+            --cat-ready: #8b5cf6;    /* purple */
+            --cat-done: #57b894;     /* green  */
+            --cat-other: #cbd5e1;    /* light grey */
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #0b0f19;
+                --panel-bg: #161e31;
+                --panel-border: #24314f;
+                --panel-hover: #1e2942;
+                --text-color: #f3f4f6;
+                --text-muted: #9ca3af;
+                --card-glow: 0 4px 20px rgba(0, 0, 0, 0.3);
+                --header-bg: linear-gradient(90deg, #111827 0%, #161e31 100%);
+                --cat-other: #374151;
+            }
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+        }
+        header {
+            background: var(--header-bg);
+            border-bottom: 1px solid var(--panel-border);
+            padding: 1.1rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: var(--card-glow);
+            position: sticky; top: 0; z-index: 20;
+        }
+        .header-title h1 { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.025em; }
+        .header-title p { color: var(--text-muted); font-size: 0.85rem; margin-top: 0.15rem; }
+        .btn {
+            font-family: inherit; font-size: 0.85rem; font-weight: 500;
+            padding: 0.55rem 1.1rem; border-radius: 8px;
+            border: 1px solid var(--panel-border); background: var(--panel-bg);
+            color: var(--text-color); cursor: pointer; transition: all .15s;
+        }
+        .btn:hover { background: var(--panel-hover); }
+        .btn.primary { background: var(--accent-color); color: #fff; border-color: var(--accent-color); }
+
+        main { padding: 1.5rem 2rem 4rem; max-width: 1400px; margin: 0 auto; }
+
+        /* Upload zone */
+        #uploadZone {
+            border: 2px dashed var(--panel-border); border-radius: 16px;
+            padding: 4rem 2rem; text-align: center; margin-top: 3rem;
+            background: var(--panel-bg);
+        }
+        #uploadZone h2 { font-weight: 600; margin-bottom: .5rem; }
+        #uploadZone p { color: var(--text-muted); margin-bottom: 1.5rem; font-size: .9rem; }
+        #uploadZone code { background: var(--panel-hover); padding: .1rem .4rem; border-radius: 4px; font-size: .8rem; }
+
+        /* Summary cards */
+        .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+        .card {
+            background: var(--panel-bg); border: 1px solid var(--panel-border);
+            border-radius: 12px; padding: 1rem 1.2rem; box-shadow: var(--card-glow);
+        }
+        .card .label { color: var(--text-muted); font-size: .75rem; text-transform: uppercase; letter-spacing: .05em; }
+        .card .value { font-size: 1.6rem; font-weight: 700; margin-top: .25rem; }
+
+        /* Controls */
+        .controls {
+            display: flex; flex-wrap: wrap; gap: .75rem; align-items: center;
+            margin-bottom: 1rem; padding: .9rem 1rem; background: var(--panel-bg);
+            border: 1px solid var(--panel-border); border-radius: 12px;
+        }
+        .controls input, .controls select {
+            font-family: inherit; font-size: .85rem; padding: .5rem .7rem;
+            border-radius: 8px; border: 1px solid var(--panel-border);
+            background: var(--bg-color); color: var(--text-color);
+        }
+        .controls input[type=search] { flex: 1; min-width: 180px; }
+        .controls label { font-size: .8rem; color: var(--text-muted); display: flex; align-items: center; gap: .35rem; }
+
+        /* Epic-status filter bar */
+        .filter-label { font-size: .8rem; font-weight: 600; color: var(--text-color); white-space: nowrap; }
+        .chips { display: flex; flex-wrap: wrap; gap: .4rem; flex: 1; }
+        .chip {
+            display: inline-flex; align-items: center; gap: .35rem; cursor: pointer;
+            font-size: .78rem; padding: .28rem .6rem; border-radius: 999px;
+            border: 1px solid var(--panel-border); background: var(--bg-color); color: var(--text-muted);
+            user-select: none; transition: all .12s;
+        }
+        .chip input { margin: 0; cursor: pointer; }
+        .chip.on { background: var(--accent-color); border-color: var(--accent-color); color: #fff; }
+        .chip .chip-count { opacity: .7; font-variant-numeric: tabular-nums; }
+        .mini {
+            font-family: inherit; font-size: .72rem; padding: .28rem .55rem; border-radius: 7px;
+            border: 1px solid var(--panel-border); background: var(--panel-bg); color: var(--text-muted); cursor: pointer;
+        }
+        .mini:hover { background: var(--panel-hover); }
+
+        /* Legend */
+        .legend { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem; font-size: .8rem; color: var(--text-muted); }
+        .legend span { display: inline-flex; align-items: center; gap: .4rem; }
+        .swatch { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+
+        /* Epic table */
+        table { width: 100%; border-collapse: collapse; }
+        thead th {
+            position: sticky; top: 72px; background: var(--bg-color); z-index: 5;
+            text-align: left; font-size: .72rem; text-transform: uppercase; letter-spacing: .04em;
+            color: var(--text-muted); padding: .6rem .6rem; border-bottom: 2px solid var(--panel-border);
+            cursor: pointer; user-select: none; white-space: nowrap;
+        }
+        thead th.num { text-align: right; }
+        tbody tr { border-bottom: 1px solid var(--panel-border); }
+        tbody tr:hover { background: var(--panel-hover); }
+        tbody td { padding: .65rem .6rem; font-size: .85rem; vertical-align: middle; }
+        td.num { text-align: right; font-variant-numeric: tabular-nums; }
+        .epic-key { font-weight: 600; color: var(--accent-color); white-space: nowrap; }
+        .epic-summary { color: var(--text-color); }
+        .epic-status-pill {
+            display: inline-block; font-size: .68rem; padding: .12rem .5rem; border-radius: 999px;
+            background: var(--panel-hover); color: var(--text-muted); margin-left: .4rem;
+        }
+        .muted { color: var(--text-muted); font-size: .8rem; }
+
+        /* Stacked bar — width of the bar reflects the epic's total (size); segments reflect status counts */
+        .bar-track { width: 100%; max-width: 340px; min-width: 80px; }
+        .bar { display: flex; height: 18px; border-radius: 5px; overflow: hidden; min-width: 4px; }
+        .bar > div { height: 100%; }
+        .bar > div:hover { opacity: .8; }
+        .counts { font-size: .78rem; color: var(--text-muted); white-space: nowrap; }
+        .pct-done { font-weight: 700; }
+
+        /* Hero chart */
+        .chart-panel {
+            background: var(--panel-bg); border: 1px solid var(--panel-border);
+            border-radius: 16px; padding: 1.5rem 1.5rem 1rem; box-shadow: var(--card-glow);
+            margin-bottom: 1.5rem;
+        }
+        .chart-title { text-align: center; font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 1rem; }
+        .chart-layout { display: grid; grid-template-columns: 1fr 220px; gap: 1.5rem; align-items: center; }
+        .chart-canvas-wrap { position: relative; height: 380px; min-width: 0; }
+        .totals-table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+        .totals-table th { text-align: left; color: var(--text-muted); font-weight: 500; font-size: .75rem;
+            text-transform: uppercase; letter-spacing: .04em; padding: .4rem .3rem; border-bottom: 1px solid var(--panel-border); }
+        .totals-table th.num, .totals-table td.num { text-align: right; }
+        .totals-table td { padding: .55rem .3rem; border-bottom: 1px solid var(--panel-border); }
+        .totals-table td.num { color: var(--accent-color); font-weight: 600; font-variant-numeric: tabular-nums; }
+        .totals-table .dot { display: inline-block; width: 14px; height: 14px; border-radius: 50%; margin-right: .6rem; vertical-align: -2px; }
+        .grand-total { text-align: center; font-size: 1.05rem; font-weight: 600; color: var(--accent-color); margin-top: .75rem; }
+        .grand-total span { color: var(--text-muted); font-weight: 500; }
+        .chart-axis-label { text-align: center; font-size: .8rem; color: var(--text-muted); margin-top: .25rem; letter-spacing: .03em; }
+        @media (max-width: 820px) { .chart-layout { grid-template-columns: 1fr; } .chart-canvas-wrap { height: 320px; } }
+
+        .footnote { color: var(--text-muted); font-size: .78rem; margin-top: 1.5rem; line-height: 1.5; }
+        .hidden { display: none !important; }
+        .warn-banner {
+            background: #fef3c7; color: #92400e; border: 1px solid #fde68a;
+            padding: .7rem 1rem; border-radius: 10px; font-size: .85rem; margin-bottom: 1rem;
+        }
+        @media (prefers-color-scheme: dark) {
+            .warn-banner { background: #422006; color: #fde68a; border-color: #713f12; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-title">
+            <h1>📊 Epic Status Rollup</h1>
+            <p>Story &amp; bug status distribution within each epic</p>
+        </div>
+        <button id="clearSavedDataBtn" class="btn">Clear saved data</button>
+            <button class="btn" id="reloadBtn" onclick="reloadFolder()" style="display:none">Reload folder</button>
+    </header>
+
+    <main>
+        <input type="file" id="folderInput" webkitdirectory directory multiple style="display:none">
+
+        <div id="uploadZone">
+            <h2>Load your Jira export folder</h2>
+            <p>
+                Select the folder containing <code>flow_analytics_export.csv</code> and
+                <code>issue_parents.csv</code>.<br>
+                (<code>issue_parents.csv</code> is produced by <code>export_epic_parents.py</code>.)
+            </p>
+            <button class="btn primary" onclick="document.getElementById('folderInput').click()">Choose folder…</button>
+        </div>
+
+        <div id="dashboard" class="hidden">
+            <div id="missingParents" class="warn-banner hidden"></div>
+            <div class="cards" id="cards"></div>
+
+            <div class="chart-panel">
+                <div class="chart-title">Status of Issues in Epic</div>
+                <div id="chartNote" class="muted" style="text-align:center;font-size:.75rem;margin:-0.5rem 0 0.75rem"></div>
+                <div class="chart-layout">
+                    <div>
+                        <div class="chart-canvas-wrap"><canvas id="epicChart"></canvas></div>
+                        <div class="chart-axis-label">EPIC LINK</div>
+                    </div>
+                    <div>
+                        <table class="totals-table">
+                            <thead><tr><th>Status</th><th class="num">Issues</th></tr></thead>
+                            <tbody id="totalsBody"></tbody>
+                        </table>
+                        <div class="grand-total" id="grandTotal"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <span class="filter-label">Epic status:</span>
+                <span id="epicStatusChips" class="chips"></span>
+                <button class="mini" id="esActive" type="button">Active only</button>
+                <button class="mini" id="esAll" type="button">All</button>
+                <button class="mini" id="esNone" type="button">None</button>
+            </div>
+
+            <div class="controls">
+                <input type="search" id="search" placeholder="Search epic key or name…">
+                <select id="projectFilter"><option value="">All projects</option></select>
+                <label>Sort by
+                    <select id="sortBy">
+                        <option value="open">Not-done stories</option>
+                        <option value="total">Total stories</option>
+                        <option value="pct">% done</option>
+                        <option value="key">Epic key</option>
+                    </select>
+                </label>
+                <select id="sortDir">
+                    <option value="desc" selected>High → Low</option>
+                    <option value="asc">Low → High</option>
+                </select>
+                <label><input type="checkbox" id="hideComplete"> Hide 100%-done epics</label>
+                <label><input type="checkbox" id="hideEmpty" checked> Hide epics with no children</label>
+                <label>Chart
+                    <select id="orientation">
+                        <option value="vertical" selected>Vertical bars</option>
+                        <option value="horizontal">Horizontal bars</option>
+                    </select>
+                </label>
+                <label>Chart top
+                    <select id="topN">
+                        <option value="10">10</option>
+                        <option value="15" selected>15</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="0">All</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="legend" id="legend"></div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th data-sort="key">Epic</th>
+                        <th>Distribution</th>
+                        <th>Breakdown</th>
+                        <th class="num" data-sort="total">Total</th>
+                        <th class="num" data-sort="done">% Done</th>
+                    </tr>
+                </thead>
+                <tbody id="epicRows"></tbody>
+            </table>
+
+            <p class="footnote" id="footnote"></p>
+        </div>
+    </main>
+
+    <script>
+    // ---- Status category configuration ----------------------------------
+    // Ordered categories shown left->right in the stacked bar.
+    const CATEGORIES = [
+        { key: 'todo',     label: 'To Do / Open', color: 'var(--cat-todo)' },
+        { key: 'progress', label: 'In Progress',  color: 'var(--cat-progress)' },
+        { key: 'qa',       label: 'QA / Review',  color: 'var(--cat-qa)' },
+        { key: 'ready',    label: 'Ready / Release', color: 'var(--cat-ready)' },
+        { key: 'done',     label: 'Done / Closed', color: 'var(--cat-done)' },
+        { key: 'other',    label: 'Other',        color: 'var(--cat-other)' },
+    ];
+
+    // Map a raw Jira status (lowercased) to a category key.
+    const STATUS_MAP = {};
+    function reg(cat, names) { names.forEach(n => STATUS_MAP[n.toLowerCase()] = cat); }
+    reg('todo', ['open','to do','backlog','reopened','sprint backlog','ready for sprint',
+        'selected for development','prioritized','vetted - approved','requirements intake',
+        'sizing','logged','needs approval','needs  approval','pending approval','on hold',
+        'moved to project','regression archive', 'funnel', 'feature funnel', 'analyze', 'analyzing', 'review', 'discover', 'ready', 'pi planning', 'pi backlog']);
+    reg('progress', ['in progress','in dev','implementation','dev complete','dev review',
+        'code review','in code-review','design review','testing','team knowledge transfer',
+        'implement', 'implementing', 'deliver', 'measure/learn', 'release & improve']);
+    reg('qa', ['in qa','qa','ready for qa','ready for qa','dev qa','qa verification','pending qa',
+        'stage testing (uat)','uat','uat testing','user acceptance testing','staging','validating',
+        'demo fail','qa fail','issue found','pending demo', 'ready for integration/testing', 'integrating / testing']);
+    reg('ready', ['ready for prod','ready for production','ready for release','ready to deploy',
+        'pending release','pending rollout','ready for stage','ready for beta','in beta','merged',
+        'passed qa','qa pass','dev pass','demo pass','approved','resolved','resolved (qat)',
+        'pending demo', 'deploy']);
+    reg('done', ['done','closed','complete','released','not required','will not fix','rejected']);
+
+    function categorize(status) {
+        if (!status) return 'other';
+        return STATUS_MAP[status.trim().toLowerCase()] || 'other';
+    }
+
+    // ---- State ----------------------------------------------------------
+    let epics = [];          // computed epic rows
+    let unmappedStatuses = new Set();
+    let chart = null;        // Chart.js instance
+    let noParentCount = 0;   // children with no parent (global)
+    let selectedEpicStatuses = null;   // Set of epic statuses to include
+    // Epic statuses whose category counts as "active / in flight" — checked by default.
+    const ACTIVE_CATS = new Set(['progress', 'qa', 'ready']);
+    const NO_STATUS = '(no status)';
+
+    // Resolve a CSS variable color to a concrete value for the canvas.
+    function cssColor(varExpr) {
+        const m = /var\((--[\w-]+)\)/.exec(varExpr);
+        if (!m) return varExpr;
+        return getComputedStyle(document.documentElement).getPropertyValue(m[1]).trim() || '#888';
+    }
+
+    const folderInput = document.getElementById('folderInput');
+
+    window.addEventListener('DOMContentLoaded', async () => {
+        try {
+            if (typeof localforage !== 'undefined') {
+                const cached = await localforage.getItem('epicDashboardData');
+                if (cached && cached.flow) build(cached.flow, cached.parents || []);
+            }
+        } catch (e) { console.error(e); }
+    });
+
+    folderInput.addEventListener('change', e => {
+        const files = Array.from(e.target.files);
+        const flowFile = files.find(f => f.name.includes('flow_analytics_export.csv') || f.name.includes('custom_flow_analytics_export.csv'));
+        const parentsFile = files.find(f => f.name.includes('issue_parents.csv'));
+        if (!flowFile) { alert('Could not find flow_analytics_export.csv in the selected folder.'); return; }
+        if (!parentsFile) { alert('Could not find issue_parents.csv. Run export_epic_parents.py first to generate it.'); return; }
+
+        Promise.all([parseCSV(flowFile), parseCSV(parentsFile)]).then(([flow, parents]) => {
+            if (typeof localforage !== 'undefined') {
+                localforage.setItem('epicDashboardData', { flow, parents }).catch(console.error);
+            }
+            build(flow, parents);
+        }).catch(err => { console.error(err); alert('Error parsing files: ' + err.message); });
+        e.target.value = '';
+    });
+
+    function parseCSV(file) {
+        return new Promise((resolve, reject) => {
+            Papa.parse(file, { header: true, skipEmptyLines: true, encoding: 'UTF-8',
+                complete: r => resolve(r.data), error: reject });
+        });
+    }
+
+    function reloadFolder() {
+        if (typeof localforage !== 'undefined') localforage.removeItem('epicDashboardData').catch(()=>{});
+        document.getElementById('dashboard').classList.add('hidden');
+        document.getElementById('uploadZone').classList.remove('hidden');
+        document.getElementById('reloadBtn').style.display = 'none';
+    }
+
+    // ---- Build model ----------------------------------------------------
+    function build(flowData, parentsData) {
+        unmappedStatuses = new Set();
+
+        // Index flow rows by issue key for status + type + summary lookups.
+        const flowByKey = {};
+        flowData.forEach(r => {
+            const k = (r['Issue Key'] || '').trim();
+            if (k) flowByKey[k] = r;
+        });
+
+        // Collect epics: anything that is referenced as a Parent, or is an Epic in the flow export.
+        const epicMap = {}; // key -> { key, summary, status, project, cats:{}, total }
+        function ensureEpic(key, summary, status) {
+            if (!key) return null;
+            if (!epicMap[key]) {
+                const flowRow = flowByKey[key] || {};
+                epicMap[key] = {
+                    key,
+                    summary: summary || flowRow['Summary'] || '(unknown epic)',
+                    status: status || flowRow['Current Status'] || '',
+                    project: key.includes('-') ? key.split('-')[0] : '',
+                    cats: Object.fromEntries(CATEGORIES.map(c => [c.key, 0])),
+                    total: 0,
+                };
+            }
+            return epicMap[key];
+        }
+
+        // Seed epics from the flow export (so even childless epics can show).
+        flowData.forEach(r => {
+            if ((r['Issue Type'] || '').trim().toLowerCase() === 'epic') {
+                ensureEpic((r['Issue Key'] || '').trim(), r['Summary'], r['Current Status']);
+            }
+        });
+
+        // Walk children and roll their status up into the parent epic.
+        let childrenWithParent = 0, childrenNoParent = 0;
+        parentsData.forEach(r => {
+            const childKey = (r['Issue Key'] || '').trim();
+            const parentKey = (r['Parent Key'] || '').trim();
+            const childType = (r['Issue Type'] || '').trim().toLowerCase();
+            if (childType === 'epic') return;            // epics are not their own children
+            if (!parentKey) { childrenNoParent++; return; }
+            childrenWithParent++;
+
+            // Prefer the richer status from the flow export; fall back to parents file.
+            const flowRow = flowByKey[childKey];
+            const status = (flowRow && flowRow['Current Status']) || r['Current Status'] || '';
+            const cat = categorize(status);
+            if (cat === 'other' && status) unmappedStatuses.add(status.trim());
+
+            const epic = ensureEpic(parentKey, r['Parent Summary'], '');
+            if (!epic) return;
+            epic.cats[cat]++;
+            epic.total++;
+        });
+
+        epics = Object.values(epicMap);
+
+        // Populate project filter
+        const projects = [...new Set(epics.map(e => e.project).filter(Boolean))].sort();
+        const pf = document.getElementById('projectFilter');
+        pf.innerHTML = '<option value="">All projects</option>' +
+            projects.map(p => `<option value="${escapeHtml(p)}">${escapeHtml(p)}</option>`).join('');
+
+        noParentCount = childrenNoParent;
+        buildEpicStatusChips();
+        renderLegend();
+        render();
+
+        // Missing-parent warning
+        const mp = document.getElementById('missingParents');
+        if (childrenNoParent > 0) {
+            mp.classList.remove('hidden');
+            mp.textContent = `${childrenNoParent.toLocaleString()} stories/bugs have no parent epic and are not counted in any epic rollup below.`;
+        } else { mp.classList.add('hidden'); }
+
+        document.getElementById('uploadZone').classList.add('hidden');
+        document.getElementById('dashboard').classList.remove('hidden');
+        document.getElementById('reloadBtn').style.display = '';
+    }
+
+    // ---- Rendering ------------------------------------------------------
+    function renderLegend() {
+        document.getElementById('legend').innerHTML = CATEGORIES.map(c =>
+            `<span><span class="swatch" style="background:${c.color}"></span>${c.label}</span>`).join('');
+    }
+
+    // Summary cards reflect the currently-filtered epic set (incl. epic-status filter).
+    function renderSummary(rows) {
+        const visible = rows.filter(e => e.total > 0);
+        const totalStories = visible.reduce((s, e) => s + e.total, 0);
+        const totalDone = visible.reduce((s, e) => s + e.cats.done, 0);
+        const cards = [
+            { label: 'Epics shown', value: visible.length.toLocaleString() },
+            { label: 'Stories / bugs rolled up', value: totalStories.toLocaleString() },
+            { label: 'Overall % done', value: totalStories ? Math.round(100 * totalDone / totalStories) + '%' : '–' },
+            { label: 'Unparented items', value: noParentCount.toLocaleString() },
+        ];
+        document.getElementById('cards').innerHTML = cards.map(c =>
+            `<div class="card"><div class="label">${c.label}</div><div class="value">${c.value}</div></div>`).join('');
+    }
+
+    const notDone = e => e.total - e.cats.done;
+    const pctDone = e => e.total ? e.cats.done / e.total : 0;
+
+    // Apply the current filters + sort and return the epic list.
+    function filteredEpics() {
+        const q = document.getElementById('search').value.trim().toLowerCase();
+        const proj = document.getElementById('projectFilter').value;
+        const sortBy = document.getElementById('sortBy').value;
+        const hideComplete = document.getElementById('hideComplete').checked;
+        const hideEmpty = document.getElementById('hideEmpty').checked;
+
+        let rows = epics.slice();
+        if (selectedEpicStatuses) rows = rows.filter(e => selectedEpicStatuses.has(e.status || NO_STATUS));
+        if (proj) rows = rows.filter(e => e.project === proj);
+        if (q) rows = rows.filter(e => e.key.toLowerCase().includes(q) || (e.summary || '').toLowerCase().includes(q));
+        if (hideEmpty) rows = rows.filter(e => e.total > 0);
+        if (hideComplete) rows = rows.filter(e => !(e.total > 0 && e.cats.done === e.total));
+
+        const dir = document.getElementById('sortDir').value === 'asc' ? 1 : -1;
+        if (sortBy === 'key') {
+            // For text, "High → Low" (desc) = Z→A; ascending = A→Z.
+            rows.sort((a, b) => -dir * a.key.localeCompare(b.key, undefined, { numeric: true }));
+        } else {
+            const valFn = { open: e => notDone(e), total: e => e.total, pct: e => pctDone(e) }[sortBy]
+                || (e => notDone(e));
+            rows.sort((a, b) => dir * (valFn(a) - valFn(b)) || b.total - a.total);
+        }
+        return rows;
+    }
+
+    // Top-level render: chart (top-N slice) + totals + full table.
+    function render() {
+        const rows = filteredEpics();
+        const topN = parseInt(document.getElementById('topN').value, 10) || 0;
+        const chartRows = topN ? rows.slice(0, topN) : rows;
+        renderSummary(rows);
+        renderChart(chartRows, rows.length);
+        renderTotals(chartRows);
+        renderTable(rows);
+    }
+
+    // Build the epic-status filter chips from the distinct statuses present.
+    function buildEpicStatusChips() {
+        const counts = {};
+        epics.forEach(e => {
+            const s = e.status || NO_STATUS;
+            counts[s] = (counts[s] || 0) + 1;
+        });
+        // Order: by category order, then count desc.
+        const catOrder = Object.fromEntries(CATEGORIES.map((c, i) => [c.key, i]));
+        const statuses = Object.keys(counts).sort((a, b) => {
+            const ca = a === NO_STATUS ? 99 : (catOrder[categorize(a)] ?? 50);
+            const cb = b === NO_STATUS ? 99 : (catOrder[categorize(b)] ?? 50);
+            return ca - cb || counts[b] - counts[a];
+        });
+
+        // Default selection = epics whose status is in an "active" category.
+        if (!selectedEpicStatuses) {
+            selectedEpicStatuses = new Set(
+                statuses.filter(s => s !== NO_STATUS && ACTIVE_CATS.has(categorize(s)))
+            );
+            // If nothing matched (unusual), fall back to all statuses.
+            if (selectedEpicStatuses.size === 0) selectedEpicStatuses = new Set(statuses);
+        }
+
+        const wrap = document.getElementById('epicStatusChips');
+        wrap.innerHTML = statuses.map(s => {
+            const on = selectedEpicStatuses.has(s);
+            return `<label class="chip ${on ? 'on' : ''}" data-status="${escapeHtml(s)}">
+                <input type="checkbox" ${on ? 'checked' : ''}>
+                ${escapeHtml(s)} <span class="chip-count">${counts[s]}</span>
+            </label>`;
+        }).join('');
+
+        wrap.querySelectorAll('.chip input').forEach(cb => {
+            cb.addEventListener('change', e => {
+                const label = e.target.closest('.chip');
+                const s = label.dataset.status;
+                if (e.target.checked) selectedEpicStatuses.add(s); else selectedEpicStatuses.delete(s);
+                label.classList.toggle('on', e.target.checked);
+                render();
+            });
+        });
+    }
+
+    function setEpicStatuses(predicate) {
+        const counts = {};
+        epics.forEach(e => { const s = e.status || NO_STATUS; counts[s] = 1; });
+        selectedEpicStatuses = new Set(Object.keys(counts).filter(predicate));
+        buildEpicStatusChips();
+        render();
+    }
+
+    // Plugin: draw the per-epic total above each stacked bar.
+    const totalLabelPlugin = {
+        id: 'totalLabel',
+        afterDatasetsDraw(c) {
+            const { ctx } = c;
+            if (!c.data.datasets.length) return;
+            const horizontal = c.options.indexAxis === 'y';
+            ctx.save();
+            ctx.fillStyle = cssColor('var(--text-color)');
+            ctx.font = '600 12px Outfit, sans-serif';
+            c.data.labels.forEach((_, i) => {
+                const total = c.data.datasets.reduce((s, ds) => s + (ds.data[i] || 0), 0);
+                if (!total) return;
+                if (horizontal) {
+                    // Rightmost edge of the stack = end of the bar.
+                    let maxX = -Infinity, y = 0;
+                    c.data.datasets.forEach((ds, di) => {
+                        const el = c.getDatasetMeta(di).data[i];
+                        if (el && ds.data[i]) { if (el.x > maxX) maxX = el.x; y = el.y; }
+                    });
+                    if (maxX === -Infinity) return;
+                    ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+                    ctx.fillText(total, maxX + 6, y);
+                } else {
+                    // Highest visible point across stacks = top of the bar.
+                    let topY = Infinity, x = 0;
+                    c.data.datasets.forEach((ds, di) => {
+                        const el = c.getDatasetMeta(di).data[i];
+                        if (el && ds.data[i]) { if (el.y < topY) topY = el.y; x = el.x; }
+                    });
+                    if (topY === Infinity) return;
+                    ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
+                    ctx.fillText(total, x, topY - 6);
+                }
+            });
+            ctx.restore();
+        }
+    };
+
+    function renderChart(chartRows, totalCount) {
+        const ctx = document.getElementById('epicChart');
+        const horizontal = document.getElementById('orientation').value === 'horizontal';
+        const labels = chartRows.map(e => e.summary || e.key);
+        const datasets = CATEGORIES.map(cat => ({
+            label: cat.label,
+            data: chartRows.map(e => e.cats[cat.key]),
+            backgroundColor: cssColor(cat.color),
+            borderWidth: 0,
+            categoryPercentage: 0.8,
+            barPercentage: 0.9,
+        })).filter(ds => ds.data.some(v => v > 0)) // drop empty categories
+          .reverse(); // CFD order: Done at the base of the stack, To Do at the far end
+
+        // Grow the canvas for horizontal bars so each epic label stays legible.
+        const wrap = ctx.parentElement;
+        wrap.style.height = horizontal ? Math.max(380, chartRows.length * 34 + 40) + 'px' : '380px';
+
+        const muted = cssColor('var(--text-muted)');
+        const truncTick = function(v) {
+            const l = this.getLabelForValue(v);
+            return l.length > 22 ? l.slice(0, 20) + '…' : l;
+        };
+        // Category axis = the epics; value axis = issue counts.
+        const catScale = { stacked: true, grid: { display: false },
+            ticks: { color: muted, font: { size: 11 }, autoSkip: false,
+                     maxRotation: horizontal ? 0 : 50, minRotation: horizontal ? 0 : 30,
+                     callback: truncTick } };
+        const valueScale = { stacked: true, beginAtZero: true,
+            title: { display: true, text: 'ISSUES', color: muted, font: { size: 11 } },
+            grid: { color: cssColor('var(--panel-border)') },
+            ticks: { color: muted, precision: 0 } };
+
+        if (chart) chart.destroy();
+        chart = new Chart(ctx, {
+            type: 'bar',
+            data: { labels, datasets },
+            options: {
+                indexAxis: horizontal ? 'y' : 'x',
+                responsive: true,
+                maintainAspectRatio: false,
+                layout: { padding: horizontal ? { right: 28 } : { top: 18 } },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            title: items => {
+                                const e = chartRows[items[0].dataIndex];
+                                return `${e.key} — ${e.summary || ''}`;
+                            }
+                        }
+                    }
+                },
+                scales: horizontal
+                    ? { x: valueScale, y: catScale }
+                    : { x: catScale, y: valueScale }
+            },
+            plugins: [totalLabelPlugin]
+        });
+
+        document.getElementById('chartNote') &&
+            (document.getElementById('chartNote').textContent =
+                totalCount > chartRows.length ? `Showing top ${chartRows.length} of ${totalCount} epics` : '');
+    }
+
+    function renderTotals(chartRows) {
+        const totals = Object.fromEntries(CATEGORIES.map(c => [c.key, 0]));
+        chartRows.forEach(e => CATEGORIES.forEach(c => totals[c.key] += e.cats[c.key]));
+        const grand = Object.values(totals).reduce((a, b) => a + b, 0);
+        document.getElementById('totalsBody').innerHTML = CATEGORIES
+            .filter(c => totals[c.key] > 0)
+            .map(c => `<tr>
+                <td><span class="dot" style="background:${c.color}"></span>${c.label}</td>
+                <td class="num">${totals[c.key].toLocaleString()}</td>
+            </tr>`).join('');
+        document.getElementById('grandTotal').innerHTML = `<span>Total:</span> ${grand.toLocaleString()}`;
+    }
+
+    function renderTable(rows) {
+        const tbody = document.getElementById('epicRows');
+        if (!rows.length) {
+            tbody.innerHTML = `<tr><td colspan="5" class="muted" style="padding:2rem;text-align:center">No epics match the current filters.</td></tr>`;
+            return;
+        }
+
+        // Scale bar length to the largest epic shown, so bar width encodes size.
+        const maxTotal = Math.max(1, ...rows.map(e => e.total));
+
+        tbody.innerHTML = rows.map(e => {
+            const pct = Math.round(100 * pctDone(e));
+            // Segments sized by absolute count relative to the largest epic (CFD order: Done first).
+            const bar = CATEGORIES.slice().reverse().map(c => {
+                const n = e.cats[c.key];
+                if (!n) return '';
+                const w = (100 * n / maxTotal).toFixed(2);
+                return `<div style="width:${w}%;background:${c.color}" title="${c.label}: ${n}"></div>`;
+            }).join('');
+            const breakdown = CATEGORIES.filter(c => e.cats[c.key] > 0)
+                .map(c => `${e.cats[c.key]} ${c.label.split(' / ')[0].toLowerCase()}`).join(' · ');
+            const statusPill = e.status ? `<span class="epic-status-pill">${escapeHtml(e.status)}</span>` : '';
+            return `<tr>
+                <td><span class="epic-key">${escapeHtml(e.key)}</span>${statusPill}<br>
+                    <span class="epic-summary">${escapeHtml(e.summary || '')}</span></td>
+                <td><div class="bar-track"><div class="bar">${bar || '<div style="width:100%;background:var(--cat-other)"></div>'}</div></div></td>
+                <td><span class="counts">${breakdown || '<span class="muted">no children</span>'}</span></td>
+                <td class="num">${e.total}</td>
+                <td class="num"><span class="pct-done" style="color:${pct===100?'var(--cat-done)':'inherit'}">${e.total?pct+'%':'–'}</span></td>
+            </tr>`;
+        }).join('');
+    }
+
+    function escapeHtml(s) {
+        return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+    }
+
+    // Wire up controls
+    ['search','projectFilter','sortBy','sortDir','hideComplete','hideEmpty','topN','orientation'].forEach(id => {
+        document.getElementById(id).addEventListener('input', render);
+    });
+    document.getElementById('esActive').addEventListener('click', () =>
+        setEpicStatuses(s => s !== NO_STATUS && ACTIVE_CATS.has(categorize(s))));
+    document.getElementById('esAll').addEventListener('click', () => setEpicStatuses(() => true));
+    document.getElementById('esNone').addEventListener('click', () => setEpicStatuses(() => false));
+    document.querySelectorAll('thead th[data-sort]').forEach(th => {
+        th.addEventListener('click', () => {
+            const map = { key: 'key', total: 'total', done: 'pct' };
+            const field = map[th.dataset.sort];
+            if (!field) return;
+            const sb = document.getElementById('sortBy');
+            const sd = document.getElementById('sortDir');
+            // Clicking the active column flips direction; a new column starts at High → Low.
+            if (sb.value === field) sd.value = sd.value === 'desc' ? 'asc' : 'desc';
+            else { sb.value = field; sd.value = 'desc'; }
+            render();
+        });
+    });
+
+    // Footnote with any unmapped statuses so categorization can be tuned.
+    function updateFootnote() {
+        const fn = document.getElementById('footnote');
+        let txt = 'Categories are derived from each child\'s current Jira status. ';
+        if (unmappedStatuses.size) {
+            txt += `Statuses placed in "Other" (not yet mapped): ${[...unmappedStatuses].sort().join(', ')}.`;
+        } else {
+            txt += 'All statuses mapped to a known category.';
+        }
+        fn.textContent = txt;
+    }
+    const origBuild = build;
+    build = function(...args) { origBuild(...args); updateFootnote(); };
+    </script>
+<script type="module">
+    import { bindClearSavedData } from './js/security.js';
+    bindClearSavedData();
+</script>
+</body>
+</html>
