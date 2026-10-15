@@ -18,7 +18,7 @@
   "author": "Yuval Yeret",
   "license": "ISC",
   "dependencies": {
-    "papaparse": "^5.5.3",
+    "papaparse": "^5.7.0",
     "chart.js": "4.5.1",
     "chartjs-adapter-date-fns": "3.0.0",
     "date-fns": "4.1.0",
